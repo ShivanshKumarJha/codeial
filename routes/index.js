@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const homeController = require('../controllers/home_controller')
 
-console.log('router loaded');
+console.log('Router loaded');
 
 // For homepage we will require the homeController controllers i.e. itself
 router.get('/', homeController.home);
