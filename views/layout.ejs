@@ -5,13 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= title %></title>
     <link rel="stylesheet" href="/css/layout.css">
+    <%- style %>
 </head>
 <body>
     <%- include('_header.ejs') %>
     
     <!-- Adding the variable part here the code which is written in the user_profile.ejs or home.ejs will be rendered accordingly-->
     <%- body %>
-
+    
     <%- include('_footer.ejs') %>
+    <!-- This will add the required static script files whenever it will be rendered-->
+    <%- script %>
 </body>
 </html>
