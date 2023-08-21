@@ -4,12 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= title %></title>
+    <!-- for layout css is common -->
     <link rel="stylesheet" href="/css/layout.css">
+    <!-- for body there is another css file -->
     <%- style %>
 </head>
 <body>
     <%- include('_header.ejs') %>
-    
     <!-- Adding the variable part here the code which is written in the user_profile.ejs or home.ejs will be rendered accordingly-->
     <%- body %>
     
