@@ -22,28 +22,41 @@ module.exports.signIn = function(request,response){
 }
 
 // Get the sign-up data
-module.exports.create = async function(request,response){
-    if(request.body.password !== request.body.confirm_password){
-        return response.redirect('back');
-    }
-
+// module.exports.create = async function(request,response){
+//     if(request.body.password !== request.body.confirm_password){
+//         return response.redirect('back');
+//     }
+//     User.findOne({email: request.body.email},function(err,user){
+//         if(err){console.log('Error in finding user in signing up');return;}
+//
+//         if(!user){
+//             User.create(request.body,function(err,user){
+//                 if(err){console.log(`Error in creating the user while signing up`);return;}
+//                 return response.redirect('/users/sign-in')
+//             })
+//         }
+//         else return response.redirect('back');
+//     })
+// }
+module.exports.create = async function (request, response){
     try{
-        const user = await User.findOne({email:request.body.email});
-        if(!user){
-            return response.redirect('/users/sign-in');
-        }
-        else{
-            // User already exists, redirect back
+        if(request.body.password !== request.body.confirm_password){
             return response.redirect('back');
         }
-    }
-    catch(err){
-        console.error('Error:', err.message);
-        // Handle the error appropriately, e.g., send an error response
-        return response.status(500).send('Internal Server Error');
-    }
 
-}
+        const existingUser = await User.findOne({ email: request.body.email });
+
+        if(!existingUser){
+            const newUser = await User.create(request.body);
+            return response.redirect('/users/sign-in');
+        }
+        else return response.redirect('back');
+    }
+    catch(error){
+        console.error('Error in signing up:', error);
+        return response.status(500).send('Internal server error');
+    }
+};
 
 // Get the sign in data and create a session
 module.exports.createSession = function(request,response){
