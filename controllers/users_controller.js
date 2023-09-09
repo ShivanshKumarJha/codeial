@@ -43,6 +43,27 @@ module.exports.create = async function (request, response){
 };
 
 // Get the sign in data and create a session
-module.exports.createSession = function(request,response){
-//    TODO
-}
+
+module.exports.createSession = async function(request,response){
+    try{
+        // Use async/await to find the user by email
+        const user = await User.findOne({email:request.body.email});
+        if(!user){
+            // Handle user not found
+            return response.redirect('back');
+        }
+
+        // Handle password which doesn't match
+        if(user.password !== request.body.password){
+            return response.redirect('back');
+        }
+
+        // Handle session creation
+        response.cookie('user_id',user.id);
+        return response.redirect('/users/profile');
+    }
+    catch(err){
+        console.error('Error in finding user in signing in',err);
+        return response.status(500).send('Internal Server Error'); // Handle the error appropriately
+    }
+};
