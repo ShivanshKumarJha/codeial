@@ -1,10 +1,28 @@
 const User = require('../models/user');
 
-module.exports.profile = function(request,response){
-    // return response.end('<h1>Users Profile</h1>');
-    return response.render('user_profile',{
-        title: 'User Profile'
-    });
+module.exports.profile = async function(request, response){
+    try{
+        if(request.cookies.user_id){
+            const user = await User.findById(request.cookies.user_id).exec();
+            if(user){
+                return response.render('user_profile',{
+                    title:"User Profile",
+                    user:user
+                });
+            }
+            else{
+                return response.redirect('/users/sign-in');
+            }
+        }
+        else{
+            return response.redirect('/users/sign-in');
+        }
+    }
+    catch(err){
+        // Handle any potential errors here
+        console.error(err);
+        return response.status(500).send('Internal Server Error');
+    }
 }
 
 // Render the sign-up page
