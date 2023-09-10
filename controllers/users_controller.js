@@ -44,5 +44,5 @@ module.exports.create = async function (request, response){
 
 // Get the sign in data and create a session
 module.exports.createSession = function(request,response){
-//    TODO
+    return response.redirect('/');
 }

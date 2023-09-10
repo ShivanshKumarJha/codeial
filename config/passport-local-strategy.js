@@ -3,22 +3,22 @@ const LocalStrategy = require('passport-local').Strategy;
 const User = require('..//models/user');
 
 // Authentication using passport
-passport.use(new LocalStrategy({
-        usernameField: 'email'
-    },
-    function(email,password,done){
-        // find a user and establish the identity
-        User.findOne({email:email},function(err,user){
-            if(err){console.log(`Error in finding the user --> Passport`);return done(err);}
-
-            if(!user || user.password !== password){
-                console.log(`Invalid Username/Password`);
-                return done(null,false);
-            }
-            return done(null,user);
-        });
+passport.use(new LocalStrategy({usernameField: 'email'},
+async function (email, password, done) {
+    try{
+        const user = await User.findOne({ email: email });
+        if (!user || user.password !== password) {
+            console.log(`Invalid Username/Password`);
+            return done(null, false);
+        }
+        return done(null, user);
     }
-));
+    catch(err){
+        console.log(`Error in finding the user --> Passport`);
+        return done(err);
+    }
+}));
+
 
 // Serializing the user which key is to be kept in cookie
 passport.serializeUser(function(user,done){
@@ -26,11 +26,20 @@ passport.serializeUser(function(user,done){
 });
 
 // Deserializing the user from the key in the cookies
-passport.deserializeUser(function (id,done){
-   User.findById(id,function(err,user){
-       if(err){console.log(`Error in finding the user --> Passport`);return done(err);}
-       return done(null,user);
-   })
+passport.deserializeUser(async function (id, done) {
+    try{
+        const user = await User.findById(id);
+        if(!user){
+            console.log(`User not found with ID ${id}`);
+            return done(null, false);
+        }
+        return done(null, user);
+    }
+    catch(err){
+        console.log(`Error in finding the user --> Passport`);
+        return done(err);
+    }
 });
+
 
 module.exports = passport;
