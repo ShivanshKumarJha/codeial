@@ -22,6 +22,16 @@ app.set('layout extractScripts',true);
 app.set('view engine','ejs');
 app.set('views','./views')
 
+// Create a MongoStore instance and reuse it
+const mongoStoreInstance = new MongoStore(
+    {
+        mongooseConnection: db,
+        autoRemove: 'disabled'
+    },
+    function (err) {
+        console.log(err || 'connect-mongodb setup ok');
+});
+
 // mongo store is used to store the session cookie in the db
 app.use(session({
     name: 'codeial',
@@ -31,16 +41,7 @@ app.use(session({
     resave: false,
     cookie: {
         maxAge: (1000*60*100)
-    },
-    store: new MongoStore(
-        {
-            mongooseConnection: db,
-            autoRemove: 'disabled'
-        },
-        function(err){
-            console.log(err || 'connect-mongodb setup ok');
-        }
-    )
+    },store: mongoStoreInstance // Use the MongoStore instance here
 }));
 
 app.use(passport.initialize());
