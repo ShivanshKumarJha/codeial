@@ -13,7 +13,7 @@ module.exports.signUp = function(request,response){
         return response.redirect('/users/profile');
     }
     return response.render('user_sign_up',{
-        title:"Codeial | Sign Up"
+        title: "Codeial | Sign Up"
     })
 }
 
@@ -23,7 +23,7 @@ module.exports.signIn = function(request,response){
         return response.redirect('/users/profile');
     }
     return response.render('user_sign_in',{
-        title:"Codeial | Sign In"
+        title: "Codeial | Sign In"
     })
 }
 
@@ -54,6 +54,11 @@ module.exports.createSession = function(request,response){
 }
 
 module.exports.destroySession = function(req,res){
-    req.logout();
-    return res.redirect('/');
+    req.logout(function(err) {
+        if(err){
+            // Handle any errors that occur during logout
+            console.error(err);
+        }
+        return res.redirect('/');
+    });
 }
