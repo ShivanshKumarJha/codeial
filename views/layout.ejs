@@ -1,26 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= title %></title>
-    <!-- for layout css is common -->
-    <link rel="stylesheet" href="/css/layout.css">
-    <link rel="stylesheet" href="/css/header.css">
-    <link rel="stylesheet" href="/css/footer.css">
-    <!-- for body there is another css file -->
-    <%- style %>
-</head>
-<body>
-    <%- include('_header.ejs') %>
-    <!-- Adding the variable part here the code which is written in the user_profile.ejs or home.ejs will be rendered accordingly-->
+<html>
+    <head>
+        <title>
+            <%= title  %>
+        </title>
+        <!-- for layout css is common -->
+        <link rel="stylesheet" href="/css/layout.css">
+        <link rel="stylesheet" href="/css/header.css">
+        <link rel="stylesheet" href="/css/footer.css">
+        <!-- for body there is another css file -->
+        <%- style %>
+        
+    </head>
 
-    <main id="layout-main">
-        <%- body %>
-    </main>
+    <body>
+        <%- include('_header'); %>
+        <!-- Adding the variable part here the code which is written in the user_profile.ejs or home.ejs will be rendered accordingly-->
+        
+        <main id="layout-main">
+            <%- body %>
+        </main>
 
-    <%- include('_footer.ejs') %>
-    <!-- This will add the required static script files whenever it will be rendered-->
-    <%- script %>
-</body>
+        <%- include('_footer'); %>
+        <!-- This will add the required static script files whenever it will be rendered-->
+        <%- script %>
+        
+    </body>
 </html>

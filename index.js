@@ -9,7 +9,7 @@ const passport = require('passport');
 const passportLocal = require('./config/passport-local-strategy');
 const MongoStore = require('connect-mongo');
 const sassMiddleWare = require('node-sass-middleware');
-const {disabled} = require("express/lib/application");
+const { disabled } = require("express/lib/application");
 
 app.use(sassMiddleWare({
     src: './assets/scss',
@@ -25,12 +25,12 @@ app.use(express.static('./assets'));
 
 app.use(expressLayouts);
 // extract styles and scripts from subpages into the layout
-app.set('layout extractStyles',true);
-app.set('layout extractScripts',true);
+app.set('layout extractStyles', true);
+app.set('layout extractScripts', true);
 
 // set up the ejs as view engine
-app.set('view engine','ejs');
-app.set('views','./views')
+app.set('view engine', 'ejs');
+app.set('views', './views')
 
 // mongo store is used to store the session cookie in the db
 app.use(session({
@@ -40,10 +40,10 @@ app.use(session({
     saveUninitialized: false,
     resave: false,
     cookie: {
-        maxAge: (1000*60*100)
-    },store: MongoStore.create({
-        mongoUrl:"mongodb://localhost/codeial_developement",
-        autoRemove:"disabled",
+        maxAge: (1000 * 60 * 100)
+    }, store: MongoStore.create({
+        mongoUrl: "mongodb://localhost/codeial_developement",
+        autoRemove: "disabled",
     }) // Use the MongoStore instance here
 }));
 
