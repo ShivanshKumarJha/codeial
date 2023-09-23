@@ -2,16 +2,12 @@
 
 <section id="feed-posts">
   <h3>Posts</h3>
-  <form action="/posts/create" id="new-post-form" method="POST">
-    <textarea
-      name="content"
-      id=""
-      cols="30"
-      rows="3"
-      placeholder="Type here..."
-    ></textarea>
-    <input type="submit" value="Post" />
-  </form>
+  <% if(locals.user){ %>
+    <form action="/posts/create" id="new-post-form" method="POST">
+      <textarea name="content" id="" cols="30" rows="3" placeholder="Type here..."></textarea>
+      <input type="submit" value="Post" />
+    </form>
+  <% } %>
 
   <div id="posts-list-container">
     <ul>
