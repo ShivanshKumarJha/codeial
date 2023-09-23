@@ -9,6 +9,7 @@ router.get('/', homeController.home);
 // This means that whenever /profile is opened,it will open the another controller named users
 router.use('/users', require('./users'));
 router.use('/posts',require('./posts'));
+router.use('/comments',require('./comments'));
 
 // for any further routes,access from here 
 // router.use('/router_Name',require('./routerfile'));
