@@ -1,6 +1,6 @@
 const Post = require('../models/post')
 
-module.exports.create = async function (req, res) {
+module.exports.create = async function (req, res){
     try{
       const post = await Post.create({
         content: req.body.content,
@@ -12,4 +12,4 @@ module.exports.create = async function (req, res) {
       console.error('Error in creating a post', err);
       return;
     }
-  };
+};
