@@ -13,6 +13,23 @@ module.exports.profile = async function (request, response) {
   }
 };
 
+module.exports.update = async function (req, res){
+  try{
+    if(req.user.id == req.params.id){
+      const updatedUser = await User.findByIdAndUpdate(
+        req.params.id,
+        req.body
+      ).exec();
+      return res.redirect('back');
+    } else {
+      return res.status(401).send('Unauthorised');
+    }
+  } catch (err) {
+    console.error(err);
+    return res.status(500).send('Internal Server Error');
+  }
+};
+
 // Render the sign-up page
 module.exports.signUp = function (request, response) {
   if (request.isAuthenticated()) {
