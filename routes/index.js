@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const homeController = require('../controllers/home_controller')
+const homeController = require('../controllers/home_controller');
 
 console.log('Router loaded');
 
@@ -8,10 +8,10 @@ console.log('Router loaded');
 router.get('/', homeController.home);
 // This means that whenever /profile is opened,it will open the another controller named users
 router.use('/users', require('./users'));
-router.use('/posts',require('./posts'));
-router.use('/comments',require('./comments'));
+router.use('/posts', require('./posts'));
+router.use('/comments', require('./comments'));
 
-// for any further routes,access from here 
+// for any further routes,access from here
 // router.use('/router_Name',require('./routerfile'));
 
 module.exports = router;
