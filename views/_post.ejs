@@ -1,8 +1,10 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 <li>
   <p>
     <% if(locals.user && locals.user.id==post.user.id) {%>
     <small>
-      <a href="/posts/destroy/<%= post.id %>">X</a>
+      <!-- <a href="/posts/destroy/<%= post.id %>">X</a> -->
+      <a href="/posts/destroy/<%= post.id %>"><i class="fa-regular fa-circle-xmark"></i></a>
     </small>
     <% } %>
     <%= post.content %>
