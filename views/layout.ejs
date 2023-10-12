@@ -5,6 +5,8 @@
     <%= title %>
   </title>
   <!-- for layout css is common -->
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script> -->
   <link rel="stylesheet" href="/css/layout.css">
   <link rel="stylesheet" href="/css/header.css">
   <link rel="stylesheet" href="/css/footer.css">
@@ -16,6 +18,12 @@
 <body>
   <%- include('_header'); %>
   <!-- Adding the variable part here the code which is written in the user_profile.ejs or home.ejs will be rendered accordingly-->
+
+  <% if(flash.success && flash.success.length>0){ %>
+    <h4>
+      <%= flash.success %>
+    </h4>
+  <%}%>
 
   <main id="layout-main">
     <%- body %>

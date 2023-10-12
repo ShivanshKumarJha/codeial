@@ -13,9 +13,9 @@ module.exports.profile = async function (request, response) {
   }
 };
 
-module.exports.update = async function (req, res){
-  try{
-    if(req.user.id == req.params.id){
+module.exports.update = async function (req, res) {
+  try {
+    if (req.user.id == req.params.id) {
       const updatedUser = await User.findByIdAndUpdate(
         req.params.id,
         req.body
@@ -70,8 +70,9 @@ module.exports.create = async function (request, response) {
 };
 
 // Get the sign in data and create a session
-module.exports.createSession = function (request, response) {
-  return response.redirect('/');
+module.exports.createSession = function (req, res) {
+  req.flash('success', 'Logged in Successfully');
+  return res.redirect('/');
 };
 
 module.exports.destroySession = function (req, res) {
@@ -80,6 +81,7 @@ module.exports.destroySession = function (req, res) {
       // Handle any errors that occur during logout
       console.error(err);
     }
+    req.flash('success', 'You have been logged out!');
     return res.redirect('/');
   });
 };

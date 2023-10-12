@@ -9,7 +9,9 @@ const passport = require('passport');
 const passportLocal = require('./config/passport-local-strategy');
 const MongoStore = require('connect-mongo');
 const sassMiddleWare = require('node-sass-middleware');
-const { disabled } = require('express/lib/application');
+const flash = require('connect-flash');
+const customMware = require('./config/middleware');
+// const { disabled } = require('express/lib/application');
 
 // Using SASS middleware to convert scss file to css
 app.use(
@@ -57,6 +59,9 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(passport.setAuthenticatedUser);
+
+app.use(flash());
+app.use(customMware.setFlash);
 
 // use express router
 app.use('/', require('./routes'));
