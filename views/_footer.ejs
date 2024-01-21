@@ -1,20 +1,36 @@
-<footer id="layout-footer">
-  <div>
-    <p>
-      &#169; Coding Ninjas. All Rights Reserved
-    </p>
-  </div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+<!-- views/_footer.ejs -->
 
-  <div>
-    <nav class="footer-nav">
-      <ul>
-        <li>
-          <a href="/">Home</a>
-        </li>
-        <li>
-          <a href="/users/profile">Profile</a>
-        </li>
-      </ul>
-    </nav>
+<footer id="layout-footer">
+  <div class="footer-content">
+    <div class="footer-section">
+      <p class="brand-name">Codeial</p>
+      <p class="tagline">Connecting Coders Worldwide</p>
+    </div>
+
+    <div class="footer-section">
+      <nav class="footer-nav">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/users/profile/<%= u.id %>">Profile</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="footer-section">
+      <div class="social-icons">
+        <a href="#" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="#" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+    </div>
+
+    <div class="footer-section">
+      <div class="contact-info">
+        <p>NIT Kurukshetra, Haryana-121009</p>
+        <p>Email: kumarjhashivansh@gmail.com</p>
+      </div>
+    </div>
   </div>
 </footer>

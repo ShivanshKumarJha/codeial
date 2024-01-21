@@ -1,18 +1,82 @@
-#layout-footer{
-  color: white;
-  a {
-    color: white;
-    text-decoration: none;
+$color_1: #ecf0f1;
+$color_2: #3498db;
+$color_3: #bdc3c7;
+$font-family_1: 'Arial', sans-serif;
+$background-color_1: #2c3e50;
+
+#layout-footer {
+  background-color: $background-color_1;
+  color: $color_1;
+  padding: 10px;
+  text-align: center;
+  .footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
   }
-
-  background: grey;
-  padding: 5px 10px;
-  display: flex;
-  justify-content: flex-start;
-
-  .footer-nav{
+  .footer-section {
+    width: 100%;
+    max-width: 300px;
+    margin-bottom: 10px;
+  }
+  p {
+    margin: 0;
+    font-size: 1rem;
+  }
+  .footer-nav {
     ul {
       list-style: none;
+      padding: 0;
     }
+    li {
+      margin: 5px;
+    }
+    a {
+      color: $color_1;
+      text-decoration: none;
+      transition: color 0.3s ease;
+      &:hover {
+        color: $color_2;
+      }
+    }
+  }
+  .social-icons {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+    a {
+      display: inline-block;
+      margin: 0 10px;
+      color: $color_1;
+      font-size: 1.5rem;
+      text-decoration: none;
+      transition: color 0.3s ease;
+      &:hover {
+        color: $color_2;
+      }
+    }
+  }
+  .contact-info {
+    margin-top: 20px;
+    text-align: center;
+    p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: $color_2;
+      font-family: $font-family_1;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+    }
+  }
+  .brand-name {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: $color_2;
+  }
+  .tagline {
+    margin-top: 5px;
+    font-size: 0.9rem;
+    color: $color_3;
   }
 }

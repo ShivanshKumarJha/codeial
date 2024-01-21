@@ -1,34 +1,54 @@
 #layout-header {
+  background: teal;
+  color: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 5px 10px;
+  transition: background 0.3s ease;
+
   nav {
     display: flex;
     justify-content: space-between;
-    padding: 0 10px;
-    background: #2196f3;
-    color: white;
-    box-shadow: 1px 1px 1px 1px lightgrey;
+    align-items: center;
 
     .mini-logo {
       p {
-        margin: 5px;
-        font-size: 1.5rem;
-        font-weight: bolder;
+        margin: 0;
+        font-weight: bold;
+
+        a {
+          font-size: 2rem;
+          color: white;
+          text-decoration: none;
+          transition: color 0.3s ease-in-out;
+
+          &:hover {
+            color: #fd971f; 
+          }
+        }
       }
     }
 
     .auth-links {
       ul {
-        margin: 5% 5px;
+        margin: 0;
+        padding: 0;
         display: flex;
         list-style: none;
+
         li {
-          margin-right: 10px;
+          margin-right: 15px;
+
+          a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+
+            &:hover {
+              color: #a6e22e; 
+            }
+          }
         }
       }
-    }
-
-    a {
-      color: white;
-      text-decoration: none;
     }
   }
 }
