@@ -1,6 +1,4 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-<!-- views/_footer.ejs -->
-
 <footer id="layout-footer">
   <div class="footer-content">
     <div class="footer-section">
@@ -12,7 +10,9 @@
       <nav class="footer-nav">
         <ul>
           <li><a href="/">Home</a></li>
-          <li><a href="/users/profile/<%= u.id %>">Profile</a></li>
+          <% if(locals.user){ %>
+            <li><a href="/users/profile/<%= user.id %>">Profile</a></li>
+            <% } %>
         </ul>
       </nav>
     </div>

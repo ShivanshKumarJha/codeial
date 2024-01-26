@@ -5,26 +5,44 @@
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   text-align: center;
-  width: 30%;
-}
+  width: 30%; }
 
 .avatar {
   border-radius: 50%;
   margin-bottom: 20px;
   width: 150px;
   height: 150px;
-  object-fit: cover;
-}
+  object-fit: cover; }
 
 form {
   display: flex;
   flex-direction: column;
-  align-items: center;
-}
+  align-items: center; }
 
-input[type='text'],
-input[type='email'],
-input[type='file'],
+input[type='text'] {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+  box-sizing: border-box; }
+
+input[type='email'] {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+  box-sizing: border-box; }
+
+input[type='file'] {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+  box-sizing: border-box; }
+
 input[type='submit'] {
   margin-bottom: 10px;
   padding: 10px;
@@ -32,19 +50,12 @@ input[type='submit'] {
   border-radius: 5px;
   width: 100%;
   box-sizing: border-box;
-}
-
-input[type='submit'] {
   background-color: #4caf50;
   color: white;
-  cursor: pointer;
-}
-
-input[type='submit']:hover {
-  background-color: #45a049;
-}
+  cursor: pointer; }
+  input[type='submit']:hover {
+    background-color: #45a049; }
 
 p {
   font-size: 18px;
-  margin: 10px 0;
-}
+  margin: 10px 0; }
