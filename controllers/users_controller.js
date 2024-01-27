@@ -15,6 +15,7 @@ module.exports.profile = async function (request, response) {
   }
 };
 
+
 module.exports.update = async function (req, res) {
   if (req.user.id == req.params.id) {
     try {
@@ -45,6 +46,7 @@ module.exports.update = async function (req, res) {
   }
 };
 
+
 // Render the sign-up page
 module.exports.signUp = function (request, response) {
   if (request.isAuthenticated()) {
@@ -55,6 +57,7 @@ module.exports.signUp = function (request, response) {
   });
 };
 
+
 // Render the sign-in page
 module.exports.signIn = function (request, response) {
   if (request.isAuthenticated()) {
@@ -64,6 +67,7 @@ module.exports.signIn = function (request, response) {
     title: 'Codeial | Sign In',
   });
 };
+
 
 // Get the sign-up data
 module.exports.create = async function (request, response) {
@@ -84,11 +88,13 @@ module.exports.create = async function (request, response) {
   }
 };
 
+
 // Get the sign in data and create a session
 module.exports.createSession = function (req, res) {
   req.flash('success', 'Logged in Successfully');
   return res.redirect('/');
 };
+
 
 module.exports.destroySession = function (req, res) {
   req.logout(function (err) {
