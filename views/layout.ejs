@@ -16,18 +16,23 @@
 </head>
 
 <body>
-  <%- include('_header'); %>
-  <!-- Adding the variable part here the code which is written in the user_profile.ejs or home.ejs will be rendered accordingly-->
+  <div id="main-container">
+    <header>
+      <%- include('_header'); %>
+      <!-- Adding the variable part here the code which is written in the user_profile.ejs or home.ejs will be rendered accordingly-->
+    </header>
+  
+    <main id="layout-main">
+      <%- body %>
+    </main>
+    
+    <footer>
+      <%- include('_footer'); %>
+    </footer>
+  </div>
 
-  
-  <main id="layout-main">
-    <%- body %>
-  </main>
-  
-  <%- include('_footer'); %>
   <!-- This will add the required static script files whenever it will be rendered-->
   <%- script %>
-
   <script>
     <% if(flash.success && flash.success.length>0){ %>
       new Noty({
@@ -51,5 +56,4 @@
   </script>
 
 </body>
-
 </html>
