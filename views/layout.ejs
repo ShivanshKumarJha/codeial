@@ -17,18 +17,16 @@
 
 <body>
   <div id="main-container">
-    <header>
+
       <%- include('_header'); %>
       <!-- Adding the variable part here the code which is written in the user_profile.ejs or home.ejs will be rendered accordingly-->
-    </header>
   
-    <main id="layout-main">
-      <%- body %>
-    </main>
+      <main id="layout-main">
+        <%- body %>
+      </main>
     
-    <footer>
       <%- include('_footer'); %>
-    </footer>
+      
   </div>
 
   <!-- This will add the required static script files whenever it will be rendered-->

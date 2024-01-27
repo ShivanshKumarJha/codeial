@@ -21,20 +21,6 @@ body {
   align-items: center;
   min-height: 100vh;
 }
-header {
-  background-color: $background-color_2;
-  color: $color_1;
-  padding: 10px;
-  width: 100%;
-  box-sizing: border-box;
-}
-footer {
-  background-color: $background-color_2;
-  color: $color_1;
-  padding: 10px;
-  width: 100%;
-  box-sizing: border-box;
-}
 .main-container {
   display: flex;
   max-width: 800px;

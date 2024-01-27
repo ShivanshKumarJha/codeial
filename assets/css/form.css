@@ -8,20 +8,6 @@ body {
   align-items: center;
   min-height: 100vh; }
 
-header {
-  background-color: #3498db;
-  color: white;
-  padding: 10px;
-  width: 100%;
-  box-sizing: border-box; }
-
-footer {
-  background-color: #3498db;
-  color: white;
-  padding: 10px;
-  width: 100%;
-  box-sizing: border-box; }
-
 .main-container {
   display: flex;
   max-width: 800px;

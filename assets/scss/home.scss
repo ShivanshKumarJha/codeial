@@ -6,9 +6,15 @@
   }
 
   #user-friends {
-    width: 30%;
+    width: 25%;
     padding: 10px;
     border-left: 1px solid lightgray;
     height: 100%;
+    a {
+      text-decoration: none;
+      &:hover {
+        color: red;
+      }
+    }
   }
 }
