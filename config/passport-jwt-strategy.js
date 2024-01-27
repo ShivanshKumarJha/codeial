@@ -12,18 +12,20 @@ let opts = {
 
 passport.use(
   new JWTStrategy(opts, function (jwt_payload, done) {
-    User.findById(jwtPayLoad._id, function (err, user) {
-      if (err) {
-        console.log('Error in finding user from JWT');
+    User.findOne({ id: jwt_payload.sub })
+      .then(user => {
+        if (user) {
+          return done(null, user);
+        } else {
+          return done(null, false);
+        }
+      })
+      .catch(err => {
+        console.log('Error in finding user from JWT:', err);
         return done(err, false);
-      }
-      if (user) {
-        return done(null, user);
-      } else {
-        return done(null, false);
-      }
-    });
+      });
   })
 );
 
 module.exports = passport;
+// localhost:8000/api/v1/posts/65b392cbac2f4c4230679d8d
