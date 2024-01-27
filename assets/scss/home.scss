@@ -1,8 +1,122 @@
 #home-container {
   display: flex;
+
   #feed-posts {
-    width: 70%;
+    flex: 1;
     padding: 10px;
+    h3 {
+      font-size: 1.6rem;
+      font-weight: bolder;
+      text-align: center;
+      margin-top: -1%;
+      padding: 10px;
+      color: #333;
+      background-color: #f0f0f0;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    #post-container {
+      display: flex;
+      flex-direction: column;
+
+      #posts-list-container ul {
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+
+        .posts {
+          flex: 0 0 45%;
+          margin: 10px;
+          display: flex;
+          flex-direction: column;
+          border: 1px solid black;
+          text-align: center;
+          border-radius: 8px;
+          overflow: hidden;
+          transition: box-shadow 0.3s;
+
+          &:hover {
+            cursor: pointer;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+          }
+
+          p {
+            margin: 10px 0;
+            line-height: 1.4;
+            word-wrap: break-word;
+          }
+
+          small {
+            color: gray;
+            margin-bottom: 8px;
+          }
+
+          small a {
+            color: #3498db;
+          }
+
+          .posts-comments {
+            display: flex;
+            flex-direction: column;
+            background-color: #f0f0f0;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+
+            form {
+              margin-bottom: 10px;
+              display: flex;
+              align-items: center;
+
+              input[type='text'] {
+                flex: 1;
+                padding: 8px;
+                box-sizing: border-box;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                margin-right: 8px;
+              }
+
+              input[type='submit'] {
+                background-color: #4caf50;
+                color: white;
+                padding: 8px 12px;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                transition: background-color 0.3s;
+              }
+
+              input[type='submit']:hover {
+                background-color: #45a049;
+              }
+            }
+
+            .posts-comments-list {
+              list-style-type: none;
+              padding: 0;
+              margin: 0;
+
+              li {
+                background-color: white;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                padding: 10px;
+                margin-bottom: 8px;
+
+                small {
+                  color: #888;
+                }
+
+                small a {
+                  color: #3498db;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
   }
 
   #user-friends {
@@ -10,11 +124,60 @@
     padding: 10px;
     border-left: 1px solid lightgray;
     height: 100%;
-    a {
-      text-decoration: none;
-      &:hover {
-        color: red;
+
+    h4 {
+      font-size: 1.6rem;
+      font-weight: bold;
+      margin-top: -3.2%;
+      color: #333;
+      background-color: #f0f0f0;
+      padding: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    p {
+      margin-bottom: 8px;
+      font-size: 1.1rem;
+      color: #333;
+      transition: color 0.3s;
+
+      a {
+        text-decoration: none;
+        color: rgb(94, 92, 92);
+        &:hover {
+          color: red;
+        }
       }
     }
+  }
+}
+
+#new-post-form {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  textarea {
+    padding: 8px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    margin-right: 8px;
+  }
+  input[type='submit'] {
+    background-color: rgb(247, 68, 68);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 4px;
+    border: 1px solid black;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 7%;
+  }
+
+  input[type='submit']:hover {
+    background-color: #f01616;
+    color: white;
   }
 }

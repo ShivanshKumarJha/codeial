@@ -1,33 +1,40 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-<li id="posts-<%= post._id %>">
-  <p>
-    <% if(locals.user && locals.user.id==post.user.id) {%>
-    <small>
-      <!-- <a href="/posts/destroy/<%= post.id %>">X</a> -->
-      <a href="/posts/destroy/<%= post.id %>"><i class="fa-regular fa-circle-xmark"></i></a>
+<li id="posts-<%= post._id %>" class="posts">
+  <div class="post-header">
+    <p>
+      <% if(locals.user && locals.user.id==post.user.id) {%>
+        <small>
+          <!-- <a href="/posts/destroy/<%= post.id %>">X</a> -->
+          <a href="/posts/destroy/<%= post.id %>"><i class="fa-regular fa-circle-xmark"></i></a>
+        </small>
+        <% } %>
+          <small style="color: black;font-size: 1.3rem;">
+            <%= post.content %>
+              <br />
+          </small>
+
+          <small style="font-size: 0.8rem;">
+            <%= post.user.name %>
+          </small>
+    </p>
+    <small class="post-date">
+      <%= new Date(post.createdAt).toLocaleString() %>
     </small>
-    <% } %>
-    <%= post.content %>
-    <br />
-    <small>
-      <%= post.user.name %>
-    </small>
-  </p>
+  </div>
   <div class="posts-comments">
     <% if(locals.user){ %>
-    <form action="/comments/create" method="POST">
-      <input type="text" name="content" placeholder="Type Here to add comment.." required />
-      <input type="hidden" name="post" value="<%= post._id %>" />
-      <input type="submit" value="Add Comment" />
-    </form>
-    <% } %>
-
-    <div class="posts-comments-list">
-      <ul id="posts-comments-<%= post._id %>">
-        <% for(comment of post.comments){%>
-        <%- include('_comment') %>
-        <%} %>
-      </ul>
-    </div>
+      <form action="/comments/create" method="POST">
+        <input type="text" name="content" placeholder="Type Here to add comment.." required />
+        <input type="hidden" name="post" value="<%= post._id %>" />
+        <input type="submit" value="Add Comment" />
+      </form>
+      <% } %>
+        <div class="posts-comments-list">
+          <ul id="posts-comments-<%= post._id %>">
+            <% for(comment of post.comments){%>
+              <%- include('_comment') %>
+                <% } %>
+          </ul>
+        </div>
   </div>
 </li>

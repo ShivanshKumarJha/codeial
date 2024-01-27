@@ -2,15 +2,18 @@
 <li>
   <p>
     <% if(locals.user && locals.user.id==comment.user.id) {%>
-    <small>
-      <!-- <a href="/comments/destroy/<%= comment.id %>">X</a> -->
-      <a href="/comments/destroy/<%= comment.id %>"><i class="fa-regular fa-circle-xmark"></i></a>
-    </small>
-    <% } %>
-    <%= comment.content %>
-    <br />
-    <small>
-      <%= comment.user.name %>
-    </small>
+      <small>
+        <!-- <a href="/comments/destroy/<%= comment.id %>">X</a> -->
+        <a href="/comments/destroy/<%= comment.id %>"><i class="fa-regular fa-circle-xmark"></i></a>
+      </small>
+      <% } %>
+        <small style="color: black;font-size: 1rem;">
+          <%= comment.content %>
+            <br />
+        </small>
+
+        <small style="font-size: 0.7rem;">
+          <%= comment.user.name %>
+        </small>
   </p>
 </li>

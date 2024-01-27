@@ -18,40 +18,41 @@
 <body>
   <div id="main-container">
 
-      <%- include('_header'); %>
+    <%- include('_header'); %>
       <!-- Adding the variable part here the code which is written in the user_profile.ejs or home.ejs will be rendered accordingly-->
-  
+
       <main id="layout-main">
         <%- body %>
       </main>
-    
+
       <%- include('_footer'); %>
-      
+
   </div>
 
   <!-- This will add the required static script files whenever it will be rendered-->
   <%- script %>
-  <script>
-    <% if(flash.success && flash.success.length>0){ %>
-      new Noty({
-        theme:'relax',
-        text:'<%= flash.success %>',
-        type:'success',
-        layout:'topRight',
-        timeout:1500
-      }).show()
-    <%}%>
+    <script>
+    <% if (flash.success && flash.success.length > 0) { %>
+        new Noty({
+          theme: 'relax',
+          text: '<%= flash.success %>',
+          type: 'success',
+          layout: 'topRight',
+          timeout: 1500
+        }).show()
+        <%}%>
     
-    <% if(flash.error && flash.error.length>0){ %>
-      new Noty({
-        theme:'relax',
-        text:'<%= flash.error %>',
-        type:'error',
-        layout:'topRight',
-        timeout:1500
-      }).show()
-    <%}%>
-  </script>
+    <% if (flash.error && flash.error.length > 0) { %>
+        new Noty({
+          theme: 'relax',
+          text: '<%= flash.error %>',
+          type: 'error',
+          layout: 'topRight',
+          timeout: 1500
+        }).show()
+        <%}%>
+    </script>
 
 </body>
+
 </html>
