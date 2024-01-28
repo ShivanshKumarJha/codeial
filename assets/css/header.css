@@ -11,13 +11,12 @@
     #layout-header nav .mini-logo p {
       margin: 0;
       font-weight: bold; }
-      #layout-header nav .mini-logo p a {
-        font-size: 2rem;
-        color: white;
-        text-decoration: none;
-        transition: color 0.3s ease-in-out; }
-        #layout-header nav .mini-logo p a:hover {
-          color: #fd971f; }
+      #layout-header nav .mini-logo p a img {
+        color: black;
+        filter: invert(100%);
+        transition: filter 0.3s ease-in-out; }
+        #layout-header nav .mini-logo p a img:hover {
+          filter: invert(90%); }
     #layout-header nav .auth-links ul {
       margin: 0;
       padding: 0;

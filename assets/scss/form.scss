@@ -114,3 +114,38 @@ button {
     background-color: $background-color_5;
   }
 }
+
+.google-sign-in {
+  text-align: center;
+  margin-top: 20px;
+
+  p {
+    margin-bottom: 10px;
+    font-size: 1rem;
+    color: #666;
+  }
+
+  .google-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: #fff;
+    background-color: #ee5642;
+    border-radius: 5px;
+    padding: 12px;
+    transition: background-color 0.3s ease;
+
+    img {
+      margin-right: 10px;
+    }
+
+    .google-text {
+      font-weight: bold;
+    }
+
+    &:hover {
+      background-color: #c23321;
+    }
+  }
+}

@@ -16,13 +16,14 @@
         font-weight: bold;
 
         a {
-          font-size: 2rem;
-          color: white;
-          text-decoration: none;
-          transition: color 0.3s ease-in-out;
+          img {
+            color: black;
+            filter: invert(100%);
+            transition: filter 0.3s ease-in-out;
 
-          &:hover {
-            color: #fd971f; 
+            &:hover {
+              filter: invert(90%);
+            }
           }
         }
       }
@@ -44,7 +45,7 @@
             transition: color 0.3s ease;
 
             &:hover {
-              color: #a6e22e; 
+              color: #a6e22e;
             }
           }
         }
