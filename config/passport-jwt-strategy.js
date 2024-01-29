@@ -28,4 +28,3 @@ passport.use(
 );
 
 module.exports = passport;
-// localhost:8000/api/v1/posts/65b392cbac2f4c4230679d8d

@@ -10,4 +10,5 @@ router.get(
   passport.checkAuthentication,
   postsController.destroy
 );
+
 module.exports = router;
