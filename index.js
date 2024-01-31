@@ -1,14 +1,19 @@
 const express = require('express');
-const cookieParser = require('cookie-parser');
 const app = express();
-const port = 8000;
+
+const cookieParser = require('cookie-parser');
+const env = require('dotenv').config();
+const port = process.env.PORT || 8000;
+
 const expressLayouts = require('express-ejs-layouts');
 const db = require('./config/mongoose');
+
 const session = require('express-session');
 const passport = require('passport');
 const passportLocal = require('./config/passport-local-strategy');
 const passportJWT = require('./config/passport-jwt-strategy');
 const passportGoogle = require('./config/passport-google-oauth2-strategy');
+
 const MongoStore = require('connect-mongo');
 const sassMiddleWare = require('node-sass-middleware');
 const flash = require('connect-flash');
