@@ -1,12 +1,19 @@
 const Post = require('../models/post');
 const Comment = require('../models/comment');
+const postsMailer = require('../mailers/posts_mailer');
+const mongoose = require('mongoose');
 
 module.exports.create = async function (req, res) {
   try {
-    const post = await Post.create({
+    let post = await Post.create({
       content: req.body.content,
       user: req.user._id,
     });
+
+    await post.save();
+    post = await post.populate('user', 'name email');
+
+    postsMailer.newPost(post);
     req.flash('success', 'Post published');
     return res.redirect('back');
   } catch (err) {

@@ -7,11 +7,11 @@ const transporter = nodemailer.createTransport({
   service: 'gmail',
   host: 'smtp.gmail.com',
   port: 587,
-  secure: false,
+  secure: true,
   auth: {
     user: process.env.SELF_EMAIL,
-    pass: process.env.SELF_PASS
-  }
+    pass: process.env.SELF_PASS,
+  },
 });
 
 const renderTemplate = (data, relativePath) => {
@@ -19,7 +19,7 @@ const renderTemplate = (data, relativePath) => {
   ejs.renderFile(
     path.join(__dirname, '../views/mailers', relativePath),
     data,
-    function(err, template) {
+    function (err, template) {
       if (err) {
         console.log('error in rendering template');
       }
@@ -31,5 +31,5 @@ const renderTemplate = (data, relativePath) => {
 
 module.exports = {
   transporter: transporter,
-  renderTemplate: renderTemplate
+  renderTemplate: renderTemplate,
 };

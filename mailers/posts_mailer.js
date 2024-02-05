@@ -2,17 +2,16 @@ const nodemailer = require('../config/nodemailer');
 const env = require('dotenv').config();
 const path = require('path');
 
-exports.newComment = comment => {
+exports.newPost = post => {
   let htmlString = nodemailer.renderTemplate(
-    { comment: comment },
-    '/comments/new_comment.ejs'
+    { post: post },
+    '/posts/new_post.ejs'
   );
-
   nodemailer.transporter.sendMail(
     {
       from: process.env.SELF_EMAIL,
-      to: comment.user.email,
-      subject: 'New Comment Published',
+      to: post.user.email,
+      subject: 'New Post Published',
       html: htmlString,
       // To attach the logo of the company
       attachments: [
