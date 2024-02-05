@@ -12,7 +12,7 @@
       padding: 10px;
       color: #333;
       background-color: #f0f0f0;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      //box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
 
     #post-container {
@@ -29,7 +29,7 @@
           margin: 10px;
           display: flex;
           flex-direction: column;
-          // border: 1px solid black;
+          //border: 1px solid black;
           text-align: center;
           border-radius: 8px;
           overflow: hidden;
@@ -37,7 +37,8 @@
 
           &:hover {
             cursor: pointer;
-            box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.1);
+            border: 1px solid black;
           }
 
           p {
@@ -120,27 +121,31 @@
   }
 
   #user-friends {
-    width: 25%;
+    width: 30%;
     padding: 10px;
-    border-left: 1px solid lightgray;
+    border-left: 1px solid lightgrey;
     height: 100%;
 
     h4 {
       font-size: 1.6rem;
       font-weight: bold;
-      margin-top: -3%;
+      margin-top: -2.5%;
       color: #333;
       background-color: #f0f0f0;
       padding: 10px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      //box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
       text-align: center;
     }
 
     p {
       margin-bottom: 8px;
-      font-size: 1.1rem;
+      font-size: 1rem;
       color: #333;
       transition: color 0.3s;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: "Cascadia Mono";
 
       a {
         text-decoration: none;
@@ -159,7 +164,8 @@
   justify-content: flex-start;
 
   textarea {
-    padding: 8px;
+    padding: 10px;
+    width: 100%;
     box-sizing: border-box;
     border: 2px solid #ccc;
     border-radius: 4px;
@@ -168,9 +174,10 @@
   input[type='submit'] {
     background-color: rgb(247, 68, 68);
     color: white;
-    padding: 8px 12px;
+    padding: 7px 10px;
     border-radius: 4px;
-    border: 1px solid black;
+    //border: 1px solid black;
+    border: none;
     cursor: pointer;
     transition: background-color 0.3s;
     width: 7%;

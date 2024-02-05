@@ -27,5 +27,3 @@ module.exports.home = async function (request, response) {
     return response.status(500).send('Internal Server Error');
   }
 };
-
-// module.exports.actionName=function(request,response){}
