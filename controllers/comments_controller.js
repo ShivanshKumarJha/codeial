@@ -7,7 +7,7 @@ const mongoose = require('mongoose');
 
 module.exports.create = async function(request, response) {
   try {
-    const post = await Post.findById(request.body.post).exec();
+    const post = await Post.findById(request.body.post);
 
     if (post) {
       let comment = await Comment.create({
@@ -21,6 +21,7 @@ module.exports.create = async function(request, response) {
       await post.save();
       comment = await comment.populate('user', 'name email');
 
+      // console.log('Inside the comments controller : ', comment);
       // commentsMailer.newComment(comment);
       let job = queue.create('emails', comment).save(function(err) {
         if (err) {

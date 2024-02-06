@@ -16,7 +16,7 @@ module.exports.create = async function(req, res) {
     post = await post.populate('user', 'name email');
 
     // postsMailer.newPost(post);
-    let job = queue.create('emails', post).save(function(err) {
+    let job = queue.create('new-post', post).save(function(err) {
       if (err) {
         console.log('error in sending to the queue', err);
         return;
@@ -38,7 +38,7 @@ module.exports.destroy = async function(req, res) {
     const post = await Post.findById(req.params.id).exec();
     if (!post) return res.redirect('back');
 
-    if (post.user == req.user.id) {
+    if (post.user === req.user.id) {
       await post.deleteOne();
       await Comment.deleteMany({ post: req.params.id }).exec();
       req.flash('success', 'Post and assciated comments deleted!');
