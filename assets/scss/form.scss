@@ -162,7 +162,24 @@ button {
     }
 
     &:hover {
-      background-color: #c23321;
+      background-color: #d93c28;
+      color: white;
     }
   }
 }
+
+
+.google-sign-in a {
+  display: inline-block;
+  text-decoration: none;
+  color: $color_2; /* Match the header color */
+  font-size: 14px;
+  margin-top: 10px;
+  transition: color 0.3s ease;
+}
+
+.google-sign-in a:hover {
+  color: darken($color_2, 20%); /* Darken the color slightly on hover */
+}
+
+
