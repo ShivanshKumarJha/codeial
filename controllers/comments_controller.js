@@ -1,9 +1,11 @@
 const Comment = require('../models/comment');
 const Post = require('../models/post');
 const commentsMailer = require('../mailers/comments_mailer');
+const queue = require('../config/kue');
+const commentEmailWorker = require('../workers/comment_email_worker');
 const mongoose = require('mongoose');
 
-module.exports.create = async function (request, response) {
+module.exports.create = async function(request, response) {
   try {
     const post = await Post.findById(request.body.post).exec();
 
@@ -11,7 +13,7 @@ module.exports.create = async function (request, response) {
       let comment = await Comment.create({
         content: request.body.content,
         post: request.body.post,
-        user: request.user._id,
+        user: request.user._id
       });
 
       post.comments.push(comment);
@@ -19,7 +21,15 @@ module.exports.create = async function (request, response) {
       await post.save();
       comment = await comment.populate('user', 'name email');
 
-      commentsMailer.newComment(comment);
+      // commentsMailer.newComment(comment);
+      let job = queue.create('emails', comment).save(function(err) {
+        if (err) {
+          console.log('error in sending to the queue', err);
+          return;
+        }
+        console.log('Job enqueued', job.id);
+      });
+
       request.flash('success', 'New comment added!');
       response.redirect('/');
     }
@@ -30,7 +40,7 @@ module.exports.create = async function (request, response) {
   }
 };
 
-module.exports.destroy = async function (req, res) {
+module.exports.destroy = async function(req, res) {
   try {
     const comment = await Comment.findById(req.params.id);
 
@@ -38,7 +48,7 @@ module.exports.destroy = async function (req, res) {
       let postId = comment.post;
       await comment.deleteOne();
       await Post.findByIdAndUpdate(postId, {
-        $pull: { comments: req.params.id },
+        $pull: { comments: req.params.id }
       });
       req.flash('success', 'Comment deleted!');
       return res.redirect('back');

@@ -2,12 +2,12 @@ const User = require('../models/user');
 const path = require('path');
 const fs = require('fs');
 
-module.exports.profile = async function (request, response) {
+module.exports.profile = async function(request, response) {
   try {
     const user = await User.findById(request.params.id).exec();
     return response.render('user_profile', {
       title: 'User Profile',
-      profile_user: user,
+      profile_user: user
     });
   } catch (err) {
     console.error(err);
@@ -16,11 +16,11 @@ module.exports.profile = async function (request, response) {
 };
 
 
-module.exports.update = async function (req, res) {
-  if (req.user.id == req.params.id) {
+module.exports.update = async function(req, res) {
+  if (req.user.id === req.params.id) {
     try {
       let user = await User.findById(req.params.id);
-      User.uploadedAvatar(req, res, function (err) {
+      User.uploadedAvatar(req, res, function(err) {
         if (err) {
           console.log('*****Multer Error: ', err);
         }
@@ -48,29 +48,29 @@ module.exports.update = async function (req, res) {
 
 
 // Render the sign-up page
-module.exports.signUp = function (request, response) {
+module.exports.signUp = function(request, response) {
   if (request.isAuthenticated()) {
     return response.redirect('/users/profile');
   }
   return response.render('user_sign_up', {
-    title: 'Codeial | Sign Up',
+    title: 'Codeial | Sign Up'
   });
 };
 
 
 // Render the sign-in page
-module.exports.signIn = function (request, response) {
+module.exports.signIn = function(request, response) {
   if (request.isAuthenticated()) {
     return response.redirect('/users/profile');
   }
   return response.render('user_sign_in', {
-    title: 'Codeial | Sign In',
+    title: 'Codeial | Sign In'
   });
 };
 
 
 // Get the sign-up data
-module.exports.create = async function (request, response) {
+module.exports.create = async function(request, response) {
   try {
     if (request.body.password !== request.body.confirm_password) {
       return response.redirect('back');
@@ -90,14 +90,14 @@ module.exports.create = async function (request, response) {
 
 
 // Get the sign in data and create a session
-module.exports.createSession = function (req, res) {
+module.exports.createSession = function(req, res) {
   req.flash('success', 'Logged in Successfully');
   return res.redirect('/');
 };
 
 
-module.exports.destroySession = function (req, res) {
-  req.logout(function (err) {
+module.exports.destroySession = function(req, res) {
+  req.logout(function(err) {
     if (err) {
       // Handle any errors that occur during logout
       console.error(err);

@@ -19,15 +19,15 @@ exports.newComment = comment => {
         {
           filename: 'logo.png',
           path: __dirname + '../' + '../' + '/assets/images/png/logo.png',
-          cid: 'logo',
-        },
-      ],
+          cid: 'logo'
+        }
+      ]
     },
     (err, info) => {
       if (err) {
         console.log('Error in sending mail', err);
       }
-      console.log('Message sent', info);
+      // console.log('Message sent', info);
     }
   );
 };

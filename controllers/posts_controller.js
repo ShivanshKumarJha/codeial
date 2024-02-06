@@ -1,19 +1,29 @@
 const Post = require('../models/post');
 const Comment = require('../models/comment');
 const postsMailer = require('../mailers/posts_mailer');
+const queue = require('../config/kue');
+const postEmailWorker = require('../workers/post_email_worker');
 const mongoose = require('mongoose');
 
-module.exports.create = async function (req, res) {
+module.exports.create = async function(req, res) {
   try {
     let post = await Post.create({
       content: req.body.content,
-      user: req.user._id,
+      user: req.user._id
     });
 
     await post.save();
     post = await post.populate('user', 'name email');
 
-    postsMailer.newPost(post);
+    // postsMailer.newPost(post);
+    let job = queue.create('emails', post).save(function(err) {
+      if (err) {
+        console.log('error in sending to the queue', err);
+        return;
+      }
+      console.log('Job enqueued', job.id);
+    });
+
     req.flash('success', 'Post published');
     return res.redirect('back');
   } catch (err) {
@@ -23,7 +33,7 @@ module.exports.create = async function (req, res) {
   }
 };
 
-module.exports.destroy = async function (req, res) {
+module.exports.destroy = async function(req, res) {
   try {
     const post = await Post.findById(req.params.id).exec();
     if (!post) return res.redirect('back');

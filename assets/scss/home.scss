@@ -4,6 +4,7 @@
   #feed-posts {
     flex: 1;
     padding: 10px;
+
     h3 {
       font-size: 1.6rem;
       font-weight: bolder;
@@ -126,7 +127,7 @@
     border-left: 1px solid lightgrey;
     height: 100%;
 
-    h4 {
+    h3 {
       font-size: 1.6rem;
       font-weight: bold;
       margin-top: -2.5%;
@@ -150,6 +151,7 @@
       a {
         text-decoration: none;
         color: rgb(94, 92, 92);
+
         &:hover {
           color: red;
         }
@@ -171,6 +173,7 @@
     border-radius: 4px;
     margin-right: 8px;
   }
+
   input[type='submit'] {
     background-color: rgb(247, 68, 68);
     color: white;
