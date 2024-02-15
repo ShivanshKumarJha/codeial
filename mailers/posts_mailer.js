@@ -18,7 +18,7 @@ exports.newPost = post => {
       attachments: [
         {
           filename: 'logo.png',
-          filePath: __dirname + '../' + '../' + '/assets/images/png/',
+          filePath: path.join(__dirname, '../', '../', '/assets/images/png/logo.png'),
           cid: 'logo'
         }
       ]
