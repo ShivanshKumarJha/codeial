@@ -18,7 +18,8 @@ exports.newPost = post => {
       attachments: [
         {
           filename: 'logo.png',
-          filePath: path.join(__dirname, '../', '../', '/assets/images/png/logo.png'),
+          // filePath: __dirname + '../' + '../' + '/assets/images/png/logo.png',
+          path: 'https://i.ibb.co/Tg00G5n/',
           cid: 'logo'
         }
       ]
@@ -46,7 +47,8 @@ exports.resetPassword = (user) => {
       attachments: [
         {
           filename: 'logo.png',
-          filePath: __dirname + '../' + '../' + '/assets/images/png/logo.png',
+          // filePath: __dirname + '../' + '../' + '/assets/images/png/logo.png',
+          path: 'https://i.ibb.co/Tg00G5n/',
           cid: 'logo'
         }
       ]

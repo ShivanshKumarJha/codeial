@@ -21,7 +21,8 @@ exports.newComment = comment => {
       attachments: [
         {
           filename: 'logo.png',
-          filePath: __dirname + '../' + '../' + '/assets/images/png/logo.png',
+          // filePath: __dirname + '../' + '../' + '/assets/images/png/logo.png',
+          path: 'https://i.ibb.co/Tg00G5n/',
           cid: 'logo'
         }
       ]
@@ -49,7 +50,8 @@ exports.newCommentOnPost = (comment) => {
       attachments: [
         {
           filename: 'logo.png',
-          filePath: __dirname + '../' + '../' + '/assets/images/png/logo.png',
+          // filePath: __dirname + '../' + '../' + '/assets/images/png/logo.png',
+          path: 'https://i.ibb.co/Tg00G5n/',
           cid: 'logo'
         }
       ]
