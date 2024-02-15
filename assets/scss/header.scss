@@ -36,8 +36,29 @@
         display: flex;
         list-style: none;
 
+        div {
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+        }
+
+        .user-profile {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
         li {
           margin-right: 15px;
+
+          .profile-picture {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 8px;
+          }
 
           a {
             color: white;
