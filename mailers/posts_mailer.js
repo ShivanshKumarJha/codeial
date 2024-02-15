@@ -18,7 +18,7 @@ exports.newPost = post => {
       attachments: [
         {
           filename: 'logo.png',
-          path: __dirname + '../' + '../' + '/assets/images/png/logo.png',
+          filePath: __dirname + '../' + '../' + '/assets/images/png/logo.png',
           cid: 'logo'
         }
       ]
@@ -46,7 +46,7 @@ exports.resetPassword = (user) => {
       attachments: [
         {
           filename: 'logo.png',
-          path: __dirname + '../' + '../' + '/assets/images/png/logo.png',
+          filePath: __dirname + '../' + '../' + '/assets/images/png/logo.png',
           cid: 'logo'
         }
       ]
@@ -75,7 +75,7 @@ exports.signupSuccess = (user) => {
       attachments: [
         {
           filename: 'logo.png',
-          path: __dirname + '../' + '../' + '/assets/images/png/logo.png',
+          filePath: __dirname + '../' + '../' + '/assets/images/png/logo.png',
           cid: 'logo'
         }
       ]

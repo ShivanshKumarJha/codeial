@@ -21,7 +21,7 @@ exports.newComment = comment => {
       attachments: [
         {
           filename: 'logo.png',
-          path: __dirname + '../' + '../' + '/assets/images/png/logo.png',
+          filePath: __dirname + '../' + '../' + '/assets/images/png/logo.png',
           cid: 'logo'
         }
       ]
@@ -49,7 +49,7 @@ exports.newCommentOnPost = (comment) => {
       attachments: [
         {
           filename: 'logo.png',
-          path: __dirname + '../' + '../' + '/assets/images/png/logo.png',
+          filePath: __dirname + '../' + '../' + '/assets/images/png/logo.png',
           cid: 'logo'
         }
       ]
