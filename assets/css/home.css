@@ -7,10 +7,8 @@
       font-size: 1.6rem;
       font-weight: bolder;
       text-align: center;
-      margin-top: -1%;
       padding: 10px;
-      color: #333;
-      background-color: #f0f0f0; }
+      color: #0E2954; }
     #home-container #feed-posts #post-container {
       display: flex;
       flex-direction: column; }
@@ -20,7 +18,7 @@
         flex-wrap: wrap; }
         #home-container #feed-posts #post-container #posts-list-container ul .posts {
           flex: 0 0 45%;
-          margin: 10px;
+          margin: 8px;
           display: flex;
           flex-direction: column;
           text-align: center;
@@ -77,22 +75,20 @@
                 border: 1px solid #ccc;
                 border-radius: 4px;
                 padding: 10px;
-                margin-bottom: 8px; }
+                margin: 2px; }
                 #home-container #feed-posts #post-container #posts-list-container ul .posts .posts-comments .posts-comments-list li small {
                   color: #888; }
                 #home-container #feed-posts #post-container #posts-list-container ul .posts .posts-comments .posts-comments-list li small a {
                   color: #3498db; }
   #home-container #user-friends {
-    width: 30%;
+    width: 25%;
     padding: 10px;
     border-left: 1px solid lightgrey;
     height: 100%; }
     #home-container #user-friends h3 {
       font-size: 1.6rem;
-      font-weight: bold;
-      margin-top: -2.5%;
-      color: #333;
-      background-color: #f0f0f0;
+      font-weight: bolder;
+      color: #0E2954;
       padding: 10px;
       text-align: center; }
     #home-container #user-friends p {

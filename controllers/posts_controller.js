@@ -1,8 +1,6 @@
 const Post = require('../models/post');
 const Comment = require('../models/comment');
 const postsMailer = require('../mailers/posts_mailer');
-const queue = require('../config/kue');
-const postEmailWorker = require('../workers/post_email_worker');
 const mongoose = require('mongoose');
 
 module.exports.create = async function(req, res) {
@@ -15,15 +13,7 @@ module.exports.create = async function(req, res) {
     await post.save();
     post = await post.populate('user', 'name email');
 
-    // postsMailer.newPost(post);
-    let job = queue.create('new-post', post).save(function(err) {
-      if (err) {
-        console.log('error in sending to the queue', err);
-        return;
-      }
-      console.log('Job enqueued', job.id);
-    });
-
+    postsMailer.newPost(post);
     req.flash('success', 'Post published');
     return res.redirect('back');
   } catch (err) {

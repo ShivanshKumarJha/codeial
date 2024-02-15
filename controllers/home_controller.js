@@ -16,10 +16,6 @@ module.exports.home = async function(request, response) {
       .exec();
 
     const users = await User.find({}).exec();
-
-    // console.log('Inside the home controller: posts are ', posts);
-    // console.log('Inside the home controller: users are ', users);
-
     return response.render('home', {
       title: 'Codeial | Home',
       posts: posts,

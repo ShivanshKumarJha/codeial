@@ -2,9 +2,7 @@ const User = require('../models/user');
 const path = require('path');
 const fs = require('fs');
 const crypto = require('crypto');
-const queue = require('../config/kue');
-const userEmailWorker = require('../workers/post_email_worker');
-const commentEmailWorker = require('../workers/comment_email_worker');
+const postsMailer = require('../mailers/posts_mailer');
 
 module.exports.profile = async function(request, response) {
   try {
@@ -86,15 +84,6 @@ module.exports.create = async function(request, response) {
 
     if (!existingUser) {
       const newUser = await User.create(request.body);
-
-      let job = queue.create('signup-successful', newUser).save(function(err) {
-        if (err) {
-          console.log('Error in sending to the queue', err);
-          return;
-        }
-        console.log('Job enqueued', job.id);
-      });
-
       return response.redirect('/users/sign-in');
     } else return response.redirect('back');
   } catch (error) {
@@ -141,10 +130,7 @@ module.exports.resetPassMail = async function(req, res) {
         user.isTokenValid = true;
         await user.save();
       }
-
-      let job = queue.create('user-emails', user).save();
-      console.log('Job enqueued', job.id);
-
+      postsMailer.resetPassword(user);
       req.flash('success', 'Password reset link sent. Please check your email');
       return res.redirect('/');
     } else {

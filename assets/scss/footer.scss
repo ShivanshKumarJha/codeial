@@ -20,7 +20,7 @@ body {
   background-color: $background-color_1;
   color: $color_1;
   text-align: center;
-  height: 100px;
+  //height: 100px;
   margin-top: auto;
 
   .footer-content {
@@ -28,37 +28,47 @@ body {
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    height: auto;
+    margin: 0.1rem;
   }
+
   .footer-section {
     width: 100%;
     max-width: 300px;
     margin-bottom: 20px;
   }
+
   p {
     margin: 0;
     font-size: 1rem;
   }
+
   .footer-nav {
     ul {
       list-style: none;
       padding: 0;
     }
+
     li {
-      margin: 5px;
+      margin: auto;
     }
+
     a {
       color: $color_1;
       text-decoration: none;
       transition: color 0.3s ease;
+
       &:hover {
         color: $color_2;
       }
     }
   }
+
   .social-icons {
     display: flex;
     justify-content: center;
     margin-top: 15px;
+
     a {
       display: inline-block;
       margin: 0 10px;
@@ -66,14 +76,17 @@ body {
       font-size: 1.5rem;
       text-decoration: none;
       transition: color 0.3s ease;
+
       &:hover {
         color: $color_2;
       }
     }
   }
+
   .contact-info {
     margin-top: 20px;
     text-align: center;
+
     p {
       margin: 0;
       font-size: 0.9rem;
@@ -83,11 +96,13 @@ body {
       letter-spacing: 0.5px;
     }
   }
+
   .brand-name {
     font-size: 1.5rem;
     font-weight: bold;
     color: $color_2;
   }
+
   .tagline {
     margin-top: 5px;
     font-size: 0.9rem;
