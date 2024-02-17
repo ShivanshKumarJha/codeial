@@ -20,13 +20,13 @@ body {
   background-color: $background-color_1;
   color: $color_1;
   text-align: center;
-  //height: 100px;
+  // height: 100px;
   margin-top: auto;
 
   .footer-content {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
     height: auto;
     margin: 0.1rem;
@@ -45,10 +45,13 @@ body {
 
   .footer-nav {
     ul {
+      margin: 0;
       list-style: none;
       padding: 0;
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
     }
 
     li {
@@ -87,27 +90,31 @@ body {
 
   .contact-info {
     margin-top: 20px;
-    text-align: center;
+    text-align: right;
 
     p {
       margin: 0;
-      font-size: 0.9rem;
-      color: $color_2;
-      font-family: $font-family_1;
-      font-weight: bold;
+      font-size: 1rem;
+      color: #ecf0f1;
       letter-spacing: 0.5px;
+      font-family: Arial, Helvetica, sans-serif;
+
+      &:hover {
+        color: $color_2;
+        cursor: pointer;
+      }
     }
   }
 
   .brand-name {
-    font-size: 1.5rem;
+    font-size: 1.9rem;
     font-weight: bold;
     color: $color_2;
   }
 
   .tagline {
     margin-top: 5px;
-    font-size: 0.9rem;
+    font-size: 1rem;
     color: $color_3;
   }
 }

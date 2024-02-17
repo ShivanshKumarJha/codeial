@@ -9,12 +9,8 @@
       font-size: 1.6rem;
       font-weight: bolder;
       text-align: center;
-      //margin-top: -1%;
       padding: 10px;
-      //color: #333;
-      color: #0E2954;
-      //background-color: #f0f0f0;
-      //box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      color: #0e2954;
     }
 
     #post-container {
@@ -125,7 +121,7 @@
   #user-friends {
     width: 25%;
     padding: 10px;
-    border-left: 1px solid lightgrey;
+    // border-left: 1px solid lightgrey;
     height: 100%;
 
     h3 {
@@ -133,7 +129,7 @@
       font-weight: bolder;
       //margin-top: -2.5%;
       //color: #333;
-      color: #0E2954;
+      color: #0e2954;
       //background-color: #f0f0f0;
       padding: 10px;
       //box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -148,7 +144,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      font-family: "Cascadia Mono";
+      font-family: 'Cascadia Mono';
 
       a {
         text-decoration: none;
@@ -169,7 +165,7 @@
 
   textarea {
     padding: 10px;
-    width: 100%;
+    width: 90%;
     box-sizing: border-box;
     border: 2px solid #ccc;
     border-radius: 4px;
@@ -177,19 +173,19 @@
   }
 
   input[type='submit'] {
-    background-color: rgb(247, 68, 68);
+    background-color: rgb(248, 81, 81);
     color: white;
-    padding: 7px 10px;
+    padding: 4px 12px;
     border-radius: 4px;
-    //border: 1px solid black;
+    font-size: 1.5rem;
+    border: 1px solid black;
     border: none;
     cursor: pointer;
     transition: background-color 0.3s;
-    width: 7%;
   }
 
   input[type='submit']:hover {
-    background-color: #f01616;
+    background-color: #f01a1a;
     color: white;
   }
 }

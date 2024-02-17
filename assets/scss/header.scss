@@ -11,6 +11,11 @@
     align-items: center;
 
     .mini-logo {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+
       p {
         margin: 0;
         font-weight: bold;

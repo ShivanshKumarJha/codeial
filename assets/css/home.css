@@ -8,7 +8,7 @@
       font-weight: bolder;
       text-align: center;
       padding: 10px;
-      color: #0E2954; }
+      color: #0e2954; }
     #home-container #feed-posts #post-container {
       display: flex;
       flex-direction: column; }
@@ -83,12 +83,11 @@
   #home-container #user-friends {
     width: 25%;
     padding: 10px;
-    border-left: 1px solid lightgrey;
     height: 100%; }
     #home-container #user-friends h3 {
       font-size: 1.6rem;
       font-weight: bolder;
-      color: #0E2954;
+      color: #0e2954;
       padding: 10px;
       text-align: center; }
     #home-container #user-friends p {
@@ -99,7 +98,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      font-family: "Cascadia Mono"; }
+      font-family: 'Cascadia Mono'; }
       #home-container #user-friends p a {
         text-decoration: none;
         color: #5e5c5c; }
@@ -112,20 +111,21 @@
   justify-content: flex-start; }
   #new-post-form textarea {
     padding: 10px;
-    width: 100%;
+    width: 90%;
     box-sizing: border-box;
     border: 2px solid #ccc;
     border-radius: 4px;
     margin-right: 8px; }
   #new-post-form input[type='submit'] {
-    background-color: #f74444;
+    background-color: #f85151;
     color: white;
-    padding: 7px 10px;
+    padding: 4px 12px;
     border-radius: 4px;
+    font-size: 1.5rem;
+    border: 1px solid black;
     border: none;
     cursor: pointer;
-    transition: background-color 0.3s;
-    width: 7%; }
+    transition: background-color 0.3s; }
   #new-post-form input[type='submit']:hover {
-    background-color: #f01616;
+    background-color: #f01a1a;
     color: white; }
