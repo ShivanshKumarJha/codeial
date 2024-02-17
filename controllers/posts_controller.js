@@ -1,14 +1,20 @@
 const Post = require('../models/post');
 const Comment = require('../models/comment');
+const User = require('../models/user');
 const postsMailer = require('../mailers/posts_mailer');
 const mongoose = require('mongoose');
 
-module.exports.create = async function(req, res) {
+module.exports.create = async function (req, res) {
   try {
     let post = await Post.create({
       content: req.body.content,
-      user: req.user._id
+      user: req.user._id,
     });
+
+    const userId = await User.findById(req.user._id);
+    // console.log(userId);
+    userId.posts.push(post);
+    await userId.save();
 
     await post.save();
     post = await post.populate('user', 'name email');
@@ -23,7 +29,7 @@ module.exports.create = async function(req, res) {
   }
 };
 
-module.exports.destroy = async function(req, res) {
+module.exports.destroy = async function (req, res) {
   try {
     const post = await Post.findById(req.params.id).exec();
     if (!post) return res.redirect('back');
@@ -40,5 +46,32 @@ module.exports.destroy = async function(req, res) {
   } catch (err) {
     req.flash('error', err);
     return res.redirect('back');
+  }
+};
+
+module.exports.getPosts = async function (req, res) {
+  console.log('Entered the controller');
+
+  try {
+    const postByUser = await User.findById(req.params.id)
+      .populate('comments')
+      .populate({
+        path: 'posts',
+        populate: {
+          path: 'comments',
+        },
+      });
+    const post = postByUser.posts;
+    const comments = postByUser.comments;
+
+    return res.render('all_posts', {
+      title: 'Codeial | Posts',
+      posts: post,
+      user: postByUser,
+      comments: comments,
+    });
+  } catch (err) {
+    console.log('***Error*** ', err);
+    res.redirect('back');
   }
 };

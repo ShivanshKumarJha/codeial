@@ -8,41 +8,53 @@ const userSchema = new mongoose.Schema(
     email: {
       type: String,
       required: true,
-      unique: true
+      unique: true,
     },
     password: {
       type: String,
-      required: true
+      required: true,
     },
     name: {
       type: String,
-      required: true
+      required: true,
     },
     avatar: {
-      type: String
+      type: String,
     },
     accessToken: {
       type: String,
-      default: 'abc'
+      default: 'abc',
     },
     isTokenValid: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
+    posts: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Post',
+      },
+    ],
+    comments: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref:'Comment'
+      }
+    ]
   },
   {
-    timestamps: true
+    timestamps: true,
   }
 );
 
 const storage = multer.diskStorage({
-  destination: function(req, file, cb) {
+  destination: function (req, file, cb) {
     cb(null, path.join(__dirname, '..', AVATAR_PATH));
   },
-  filename: function(req, file, cb) {
+  filename: function (req, file, cb) {
     const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
     cb(null, file.fieldname + '-' + uniqueSuffix);
-  }
+  },
 });
 
 // Static methods

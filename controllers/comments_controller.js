@@ -1,21 +1,25 @@
 const Comment = require('../models/comment');
 const Post = require('../models/post');
+const User = require('../models/user');
 const commentsMailer = require('../mailers/comments_mailer');
 const mongoose = require('mongoose');
 
-module.exports.create = async function(request, response) {
+module.exports.create = async function (request, response) {
   try {
     const post = await Post.findById(request.body.post);
+    const user = await User.findById(request.user._id);
 
     if (post) {
       let comment = await Comment.create({
         content: request.body.content,
         post: request.body.post,
-        user: request.user._id
+        user: request.user._id,
       });
 
       post.comments.push(comment);
+      user.comments.push(comment);
 
+      await user.save();
       await post.save();
       comment = await comment.populate('user', 'name email');
 
@@ -31,7 +35,7 @@ module.exports.create = async function(request, response) {
   }
 };
 
-module.exports.destroy = async function(req, res) {
+module.exports.destroy = async function (req, res) {
   try {
     const comment = await Comment.findById(req.params.id);
 
@@ -39,7 +43,7 @@ module.exports.destroy = async function(req, res) {
       let postId = comment.post;
       await comment.deleteOne();
       await Post.findByIdAndUpdate(postId, {
-        $pull: { comments: req.params.id }
+        $pull: { comments: req.params.id },
       });
       req.flash('success', 'Comment deleted!');
       return res.redirect('back');

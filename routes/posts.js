@@ -11,4 +11,6 @@ router.get(
   postsController.destroy
 );
 
+router.get('/:id',passport.checkAuthentication,postsController.getPosts);
+
 module.exports = router;
