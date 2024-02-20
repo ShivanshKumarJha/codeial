@@ -26,19 +26,19 @@
 
         <%- include('_header'); %>
 
-        <!-- Adding the variable part here the code which is written in the user_profile.ejs or home.ejs will be rendered accordingly-->
-        <main id="layout-main">
-            <%- body; %>
-        </main>
+            <!-- Adding the variable part here the code which is written in the user_profile.ejs or home.ejs will be rendered accordingly-->
+            <main id="layout-main">
+                <%- body; %>
+            </main>
 
-        <%- include('_footer'); %>
+            <%- include('_footer'); %>
 
     </div>
 
     <!-- This will add the required static script files whenever it will be rendered-->
     <%- script; %>
-    <script src="/js/formatting.js"></script>
-    <script>
+        <script src="/js/formatting.js"></script>
+        <script>
     <% if (flash.success && flash.success.length > 0) { %>
                 new Noty({
                     theme: 'relax',
@@ -60,4 +60,5 @@
                 <% } %>
         </script>
 </body>
+
 </html>

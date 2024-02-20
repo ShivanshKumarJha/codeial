@@ -5,17 +5,17 @@ module.exports.home = async function (request, response) {
   try {
     // Populate the user of each post
     const posts = await Post.find({})
-      // .sort('-createdAt')
       .populate('user')
       .populate({
         path: 'comments',
-        populate: {
-          path: 'user',
-        },
+        populate: [{ path: 'user' }, { path: 'likes' }],
       })
+      .populate('likes')
       .exec();
 
     const users = await User.find({}).exec();
+    // console.log(users, posts);
+
     return response.render('home', {
       title: 'Codeial | Home',
       posts: posts,

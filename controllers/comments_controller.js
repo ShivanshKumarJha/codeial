@@ -1,6 +1,7 @@
 const Comment = require('../models/comment');
 const Post = require('../models/post');
 const User = require('../models/user');
+const Like = require('../models/like');
 const commentsMailer = require('../mailers/comments_mailer');
 const mongoose = require('mongoose');
 
@@ -24,6 +25,7 @@ module.exports.create = async function (request, response) {
       comment = await comment.populate('user', 'name email');
 
       console.log('Inside the comments controller : ', comment);
+      // TODO i have to comment in the mailer section
       commentsMailer.newComment(comment);
       request.flash('success', 'New comment added!');
       response.redirect('/');
@@ -35,16 +37,30 @@ module.exports.create = async function (request, response) {
   }
 };
 
+
 module.exports.destroy = async function (req, res) {
   try {
     const comment = await Comment.findById(req.params.id);
 
     if (comment.user.toString() === req.user.id.toString()) {
       let postId = comment.post;
+
+      // Remove the comment ID from the user's comments array
+      await User.findByIdAndUpdate(comment.user, {
+        $pull: { comments: comment._id },
+      });
+
+      // Delete the comment
       await comment.deleteOne();
+
+      // Remove the comment ID from the post's comments array
       await Post.findByIdAndUpdate(postId, {
         $pull: { comments: req.params.id },
       });
+
+      // Delete associated likes for the comment
+      await Like.deleteMany({ likeable: comment._id, onModel: 'Comment' });
+
       req.flash('success', 'Comment deleted!');
       return res.redirect('back');
     } else {
@@ -58,3 +74,5 @@ module.exports.destroy = async function (req, res) {
     return res.status(500).send('Internal Server Error');
   }
 };
+
+// TODO delete the posts and comments associated with the user when some post and comment is deleted

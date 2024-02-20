@@ -10,38 +10,46 @@ const userSchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
+
     password: {
       type: String,
       required: true,
     },
+
     name: {
       type: String,
       required: true,
     },
+
     avatar: {
       type: String,
     },
+
     accessToken: {
       type: String,
       default: 'abc',
     },
+
     isTokenValid: {
       type: Boolean,
       default: false,
     },
+
     posts: [
       {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Post',
       },
     ],
+
     comments: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref:'Comment'
-      }
-    ]
+        ref: 'Comment',
+      },
+    ],
   },
+
   {
     timestamps: true,
   }

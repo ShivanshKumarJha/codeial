@@ -27,16 +27,16 @@
           margin: 8px;
           display: flex;
           flex-direction: column;
-          //border: 1px solid black;
           text-align: center;
           border-radius: 8px;
           overflow: hidden;
           transition: box-shadow 0.3s;
+          position: relative;
 
           &:hover {
             cursor: pointer;
-            box-shadow: 0 0 40px rgba(0, 0, 0, 0.1);
             border: 1px solid black;
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.1);
           }
 
           p {
@@ -48,10 +48,6 @@
           small {
             color: gray;
             margin-bottom: 8px;
-          }
-
-          small a {
-            color: #3498db;
           }
 
           .posts-comments {
@@ -84,10 +80,10 @@
                 border-radius: 4px;
                 cursor: pointer;
                 transition: background-color 0.3s;
-              }
 
-              input[type='submit']:hover {
-                background-color: #45a049;
+                &:hover {
+                  background-color: #45a049;
+                }
               }
             }
 
@@ -113,6 +109,23 @@
               }
             }
           }
+
+          .like-container {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            font-size: 1.1rem;
+
+            .fa-heart {
+              color: #ccc;
+              transition: color 0.3s;
+              cursor: pointer;
+
+              &.liked {
+                color: red;
+              }
+            }
+          }
         }
       }
     }
@@ -121,18 +134,12 @@
   #user-friends {
     width: 25%;
     padding: 10px;
-    // border-left: 1px solid lightgrey;
-    height: 100%;
 
     h3 {
       font-size: 1.6rem;
       font-weight: bolder;
-      //margin-top: -2.5%;
-      //color: #333;
       color: #0e2954;
-      //background-color: #f0f0f0;
       padding: 10px;
-      //box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
       text-align: center;
     }
 
@@ -156,36 +163,43 @@
       }
     }
   }
+
+  #new-post-form {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    textarea {
+      padding: 10px;
+      width: 90%;
+      box-sizing: border-box;
+      border: 2px solid #ccc;
+      border-radius: 4px;
+      margin-right: 8px;
+    }
+
+    input[type='submit'] {
+      background-color: rgb(248, 81, 81);
+      color: white;
+      padding: 4px 12px;
+      border-radius: 4px;
+      font-size: 1.5rem;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s;
+
+      &:hover {
+        background-color: #f01a1a;
+        color: white;
+      }
+    }
+  }
+
+  .toggle-like-button {
+    text-decoration: none;
+  }
 }
 
-#new-post-form {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-
-  textarea {
-    padding: 10px;
-    width: 90%;
-    box-sizing: border-box;
-    border: 2px solid #ccc;
-    border-radius: 4px;
-    margin-right: 8px;
-  }
-
-  input[type='submit'] {
-    background-color: rgb(248, 81, 81);
-    color: white;
-    padding: 4px 12px;
-    border-radius: 4px;
-    font-size: 1.5rem;
-    border: 1px solid black;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-
-  input[type='submit']:hover {
-    background-color: #f01a1a;
-    color: white;
-  }
+.deleted {
+  color: red;
 }

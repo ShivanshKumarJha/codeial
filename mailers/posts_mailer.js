@@ -7,7 +7,10 @@ exports.newPost = post => {
     { post: post },
     '/posts/new_post.ejs'
   );
-  console.log(post);
+  // console.log(post);
+  // console.log(
+  //   path.join(__dirname + '../' + '../' + '/assets/images/png/logo.png')
+  // );
   nodemailer.transporter.sendMail(
     {
       from: process.env.SELF_EMAIL,
@@ -18,10 +21,10 @@ exports.newPost = post => {
       attachments: [
         {
           filename: 'logo.png',
-          filePath: __dirname + '../' + '../' + '/assets/images/png/logo.png',
-          cid: 'logo'
-        }
-      ]
+          path: __dirname + '../' + '../' + '/assets/images/png/logo.png',
+          cid: 'logo',
+        },
+      ],
     },
     (err, info) => {
       if (err) {
@@ -32,12 +35,14 @@ exports.newPost = post => {
   );
 };
 
-exports.resetPassword = (user) => {
-  let htmlString = nodemailer.renderTemplate({ user: user }, '/posts/password_reset.ejs');
+exports.resetPassword = user => {
+  let htmlString = nodemailer.renderTemplate(
+    { user: user },
+    '/posts/password_reset.ejs'
+  );
   console.log('Inside resetPassword Mailer');
   console.log(user);
-  nodemailer.transporter.sendMail
-  (
+  nodemailer.transporter.sendMail(
     {
       from: process.env.SELF_EMAIL,
       to: user.email,
@@ -46,10 +51,10 @@ exports.resetPassword = (user) => {
       attachments: [
         {
           filename: 'logo.png',
-          filePath: __dirname + '../' + '../' + '/assets/images/png/logo.png',
-          cid: 'logo'
-        }
-      ]
+          path: __dirname + '../' + '../' + '/assets/images/png/logo.png',
+          cid: 'logo',
+        },
+      ],
     },
     (err, info) => {
       if (err) {
@@ -60,13 +65,14 @@ exports.resetPassword = (user) => {
   );
 };
 
-
-exports.signupSuccess = (user) => {
-  let htmlString = nodemailer.renderTemplate({ user: user }, '/posts/signup_successful.ejs');
+exports.signupSuccess = user => {
+  let htmlString = nodemailer.renderTemplate(
+    { user: user },
+    '/posts/signup_successful.ejs'
+  );
   // console.log('Inside signupSuccessful Mailer');
 
-  nodemailer.transporter.sendMail
-  (
+  nodemailer.transporter.sendMail(
     {
       from: process.env.SELF_EMAIL,
       to: user.email,
@@ -76,9 +82,9 @@ exports.signupSuccess = (user) => {
         {
           filename: 'logo.png',
           filePath: __dirname + '../' + '../' + '/assets/images/png/logo.png',
-          cid: 'logo'
-        }
-      ]
+          cid: 'logo',
+        },
+      ],
     },
     (err, info) => {
       if (err) {

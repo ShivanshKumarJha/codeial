@@ -1,19 +1,32 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
 <li id="posts-<%= post._id %>" class="posts">
     <div class="post-header">
         <p>
             <% if(locals.user && post.user && locals.user.id==post.user.id) { %>
-                <small>
-                    <a href="/posts/destroy/<%= post.id %>"><i class="fa-regular fa-circle-xmark"></i></a>
+                <small style="font-size: 1.2rem;">
+                    <a href="/posts/destroy/<%= post._id %>"><i class="far fa-times-circle"></i></a>
                 </small>
                 <% } %>
-                    <small style="color: black;font-size: 1.3rem;">
+                    <small style="color: black;font-size: 1.5rem;">
                         <%= post.content %>
                             <br />
                     </small>
-
-                    <small style="font-size: 0.8rem;">
+                    <small style="font-size: 1rem;">
                         <%= post.user ? post.user.name : 'Unknown' %>
+                    </small>
+                    <small class="like-container">
+                        <% if(locals.user) { %>
+                            <a class="toggle-like-button" data-postid="<%= post._id %>"
+                                data-likes="<%= post.likes.length %>" href="/likes/toggle/?id=<%= post._id %>&type=Post"
+                                style="text-decoration: none;">
+                                <i class="far fa-heart"></i>
+                                <%= post.likes.length %> Likes
+                            </a>
+                            <% } else { %>
+                                <i class="fas fa-heart" style="color: red;"></i>
+                                <%= post.likes.length %> Likes
+                                    <% } %>
                     </small>
         </p>
         <small class="post-date">

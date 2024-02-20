@@ -1,6 +1,7 @@
 const Post = require('../models/post');
 const Comment = require('../models/comment');
 const User = require('../models/user');
+const Like = require('../models/like');
 const postsMailer = require('../mailers/posts_mailer');
 const mongoose = require('mongoose');
 
@@ -19,6 +20,7 @@ module.exports.create = async function (req, res) {
     await post.save();
     post = await post.populate('user', 'name email');
 
+    // TODO i have to comment in the mailer section
     postsMailer.newPost(post);
     req.flash('success', 'Post published');
     return res.redirect('back');
@@ -35,8 +37,19 @@ module.exports.destroy = async function (req, res) {
     if (!post) return res.redirect('back');
 
     if (post.user.toString() === req.user.id.toString()) {
+      // delete the associated likes for the post and all its comments likes too
+      await Like.deleteMany({ likeable: post, onModel: 'Post' });
+      await Like.deleteMany({ _id: { $in: post.comments } });
+
+      // Remove the post from the user's posts array
+      await User.updateOne({ _id: post.user }, { $pull: { posts: post._id } });
+
+      // Delete the post
       await post.deleteOne();
+
+      // Delete all the comments associated with the post
       await Comment.deleteMany({ post: req.params.id }).exec();
+
       req.flash('success', 'Post and assciated comments deleted!');
       return res.redirect('back');
     } else {

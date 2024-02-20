@@ -24,11 +24,12 @@
           text-align: center;
           border-radius: 8px;
           overflow: hidden;
-          transition: box-shadow 0.3s; }
+          transition: box-shadow 0.3s;
+          position: relative; }
           #home-container #feed-posts #post-container #posts-list-container ul .posts:hover {
             cursor: pointer;
-            box-shadow: 0 0 40px rgba(0, 0, 0, 0.1);
-            border: 1px solid black; }
+            border: 1px solid black;
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.1); }
           #home-container #feed-posts #post-container #posts-list-container ul .posts p {
             margin: 10px 0;
             line-height: 1.4;
@@ -36,8 +37,6 @@
           #home-container #feed-posts #post-container #posts-list-container ul .posts small {
             color: gray;
             margin-bottom: 8px; }
-          #home-container #feed-posts #post-container #posts-list-container ul .posts small a {
-            color: #3498db; }
           #home-container #feed-posts #post-container #posts-list-container ul .posts .posts-comments {
             display: flex;
             flex-direction: column;
@@ -64,8 +63,8 @@
                 border-radius: 4px;
                 cursor: pointer;
                 transition: background-color 0.3s; }
-              #home-container #feed-posts #post-container #posts-list-container ul .posts .posts-comments form input[type='submit']:hover {
-                background-color: #45a049; }
+                #home-container #feed-posts #post-container #posts-list-container ul .posts .posts-comments form input[type='submit']:hover {
+                  background-color: #45a049; }
             #home-container #feed-posts #post-container #posts-list-container ul .posts .posts-comments .posts-comments-list {
               list-style-type: none;
               padding: 0;
@@ -80,10 +79,20 @@
                   color: #888; }
                 #home-container #feed-posts #post-container #posts-list-container ul .posts .posts-comments .posts-comments-list li small a {
                   color: #3498db; }
+          #home-container #feed-posts #post-container #posts-list-container ul .posts .like-container {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            font-size: 1.1rem; }
+            #home-container #feed-posts #post-container #posts-list-container ul .posts .like-container .fa-heart {
+              color: #ccc;
+              transition: color 0.3s;
+              cursor: pointer; }
+              #home-container #feed-posts #post-container #posts-list-container ul .posts .like-container .fa-heart.liked {
+                color: red; }
   #home-container #user-friends {
     width: 25%;
-    padding: 10px;
-    height: 100%; }
+    padding: 10px; }
     #home-container #user-friends h3 {
       font-size: 1.6rem;
       font-weight: bolder;
@@ -104,28 +113,31 @@
         color: #5e5c5c; }
         #home-container #user-friends p a:hover {
           color: red; }
+  #home-container #new-post-form {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; }
+    #home-container #new-post-form textarea {
+      padding: 10px;
+      width: 90%;
+      box-sizing: border-box;
+      border: 2px solid #ccc;
+      border-radius: 4px;
+      margin-right: 8px; }
+    #home-container #new-post-form input[type='submit'] {
+      background-color: #f85151;
+      color: white;
+      padding: 4px 12px;
+      border-radius: 4px;
+      font-size: 1.5rem;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s; }
+      #home-container #new-post-form input[type='submit']:hover {
+        background-color: #f01a1a;
+        color: white; }
+  #home-container .toggle-like-button {
+    text-decoration: none; }
 
-#new-post-form {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start; }
-  #new-post-form textarea {
-    padding: 10px;
-    width: 90%;
-    box-sizing: border-box;
-    border: 2px solid #ccc;
-    border-radius: 4px;
-    margin-right: 8px; }
-  #new-post-form input[type='submit'] {
-    background-color: #f85151;
-    color: white;
-    padding: 4px 12px;
-    border-radius: 4px;
-    font-size: 1.5rem;
-    border: 1px solid black;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s; }
-  #new-post-form input[type='submit']:hover {
-    background-color: #f01a1a;
-    color: white; }
+.deleted {
+  color: red; }

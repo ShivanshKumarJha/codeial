@@ -2,18 +2,29 @@
 <li>
   <p>
     <% if(locals.user && locals.user.id==comment.user.id) {%>
-      <small>
-        <!-- <a href="/comments/destroy/<%= comment.id %>">X</a> -->
+      <small style="font-size: 1rem;">
         <a href="/comments/destroy/<%= comment.id %>"><i class="fa-regular fa-circle-xmark"></i></a>
       </small>
       <% } %>
-        <small style="color: black;font-size: 1rem;">
+        <small style="color: black;font-size: 1.3rem;">
           <%= comment.content %>
             <br />
         </small>
 
-        <small style="font-size: 0.7rem;">
+        <small style="font-size: 0.9rem;">
           <%= comment.user.name %>
+        </small>
+        <br>
+        <small style="font-size: 0.9rem;">
+          <% if(locals.user){ %>
+            <a class="toggle-like-button" data-likes="<%= comment.likes.length %>"
+              href="/likes/toggle/?id=<%= comment._id %>&type=Comment">
+              <%= comment.likes.length %> Likes
+            </a>
+            <% } else { %>
+              <i class="fas fa-heart" style="color: red;"></i>
+              <%= comment.likes.length %>
+                <% } %>
         </small>
   </p>
 </li>

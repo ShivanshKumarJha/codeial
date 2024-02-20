@@ -21,10 +21,10 @@ exports.newComment = comment => {
       attachments: [
         {
           filename: 'logo.png',
-          filePath: __dirname + '../' + '../' + '/assets/images/png/logo.png',
-          cid: 'logo'
-        }
-      ]
+          path: __dirname + '../' + '../' + '/assets/images/png/logo.png',
+          cid: 'logo',
+        },
+      ],
     },
     (err, info) => {
       if (err) {
@@ -39,8 +39,7 @@ exports.newCommentOnPost = (comment) => {
   let htmlString = nodemailer.renderTemplate({ comment: comment }, '/comments/new_comment_on_post.ejs');
   // console.log('Inside newCommentOnPost Mailer: ', comment);
 
-  nodemailer.transporter.sendMail
-  (
+  nodemailer.transporter.sendMail(
     {
       from: process.env.SELF_EMAIL,
       to: comment.post.user.email,
@@ -49,10 +48,10 @@ exports.newCommentOnPost = (comment) => {
       attachments: [
         {
           filename: 'logo.png',
-          filePath: __dirname + '../' + '../' + '/assets/images/png/logo.png',
-          cid: 'logo'
-        }
-      ]
+          path: __dirname + '../' + '../' + '/assets/images/png/logo.png',
+          cid: 'logo',
+        },
+      ],
     },
     (err, info) => {
       if (err) {
