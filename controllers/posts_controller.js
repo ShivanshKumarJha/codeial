@@ -20,7 +20,6 @@ module.exports.create = async function (req, res) {
     await post.save();
     post = await post.populate('user', 'name email');
 
-    // TODO i have to comment in the mailer section
     postsMailer.newPost(post);
     req.flash('success', 'Post published');
     return res.redirect('back');

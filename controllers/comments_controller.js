@@ -24,8 +24,7 @@ module.exports.create = async function (request, response) {
       await post.save();
       comment = await comment.populate('user', 'name email');
 
-      console.log('Inside the comments controller : ', comment);
-      // TODO i have to comment in the mailer section
+      // console.log('Inside the comments controller : ', comment);
       commentsMailer.newComment(comment);
       request.flash('success', 'New comment added!');
       response.redirect('/');
