@@ -6,6 +6,10 @@ ul {
   margin: 0;
   list-style-type: none;
   justify-content: flex-start; }
+  ul .no-post {
+    color: red;
+    padding: 2rem;
+    margin: 0 auto; }
   ul .posts {
     background-color: #f9f9f9;
     margin: 1rem;

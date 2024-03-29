@@ -7,10 +7,6 @@ exports.newPost = post => {
     { post: post },
     '/posts/new_post.ejs'
   );
-  // console.log(post);
-  // console.log(
-  //   path.join(__dirname + '../' + '../' + '/assets/images/png/logo.png')
-  // );
   nodemailer.transporter.sendMail(
     {
       from: process.env.SELF_EMAIL,

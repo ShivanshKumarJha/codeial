@@ -48,6 +48,23 @@ const userSchema = new mongoose.Schema(
         ref: 'Comment',
       },
     ],
+
+    friendships: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'FriendShip',
+      },
+    ],
+
+    address: {
+      type: String,
+      required: true,
+    },
+
+    description: {
+      type: String,
+      required: true,
+    },
   },
 
   {
