@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
+const env = require('dotenv').config();
 const usersController = require('..//controllers/users_controller');
 const { fail } = require('assert');
 

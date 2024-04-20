@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
+const env = require('dotenv').config();
 
 const postsController = require('../controllers/posts_controller');
 
@@ -11,6 +12,6 @@ router.get(
   postsController.destroy
 );
 
-router.get('/:id',passport.checkAuthentication,postsController.getPosts);
+router.get('/:id', passport.checkAuthentication, postsController.getPosts);
 
 module.exports = router;
