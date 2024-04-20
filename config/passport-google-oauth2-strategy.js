@@ -11,7 +11,7 @@ passport.use(
     {
       clientID: process.env.CLIENT_ID,
       clientSecret: process.env.CLIENT_SECRET,
-      callbackURL: (process.env.NODE_ENV === 'production' ?
+      callbackURL: (process.env.NODE_ENV == 'production' ?
         process.env.PROD_URL : process.env.LOCAL_URL)
     },
     async function(accessToken, refreshToken, profile, done) {
