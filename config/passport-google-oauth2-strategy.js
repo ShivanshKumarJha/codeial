@@ -9,10 +9,11 @@ const User = require('../models/user');
 passport.use(
   new GoogleStrategy(
     {
-      clientID: process.env.CLIENT_ID,
+      clientID: '487633727199-6i37vsccq1na0b3rm4hb7dtdo7oe1i6k.apps.googleusercontent.com',
       clientSecret: process.env.CLIENT_SECRET,
-      callbackURL: (process.env.NODE_ENV == 'production' ?
-        process.env.PROD_URL : process.env.LOCAL_URL)
+      callbackURL: process.env.NODE_ENV === 'production' ?
+        process.env.PROD_URL : process.env.LOCAL_URL
+
     },
     async function(accessToken, refreshToken, profile, done) {
       try {
