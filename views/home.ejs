@@ -1,7 +1,8 @@
 <link rel="stylesheet" href="/css/home.css">
+<link rel="stylesheet" href="/css/friend.css">
 
 <div id="home-container">
-    <section id="feed-posts">
+    <div id="feed-posts">
         <h3>Posts 📝</h3>
         <div id="post-container">
 
@@ -10,29 +11,92 @@
                     <textarea name="content" id="" cols="100" rows="3" placeholder="Type here..." required></textarea>
                     <input type="submit" value="Post" />
                 </form>
-                <% } %>
+            <% } %>
 
-                    <div id="posts-list-container">
-                        <ul>
-                            <% for(post of posts){ %>
-                                <%- include('_post') %>
-                                    <% } %>
-                        </ul>
-                    </div>
+            <div id="posts-list-container">
+                <ul>
+                    <% for(post of posts){ %>
+                        <%- include('_post') %>
+                    <% } %>
+                </ul>
+            </div>
 
         </div>
-    </section>
+    </div>
 
-    <section id="user-friends">
-        <h3>Friends 🫂</h3>
-        <% for(u of all_users){ %>
-            <p>
-                <a href="/users/profile/<%= u.id; %>">
-                    <%= u.name; %>
-                </a>
-            </p>
-            <% } %>
-    </section>
+    <div id='friends-container'>
+        <!-- All Friends -->
+        <% if(locals.user) { %>
+            <section id="user-friends">
+                <h3>Friends</h3>
+                <% if(all_friends.length > 0){ %>
+                    <div style='display: flex;flex-direction: column;align-items: flex-start'>
+                        <% for(friend of all_friends){ %>
+                            <li id="friend-<%= friend.id %>">
+                                <% if (friend.to_user.avatar && friend.to_user.avatar !== '/assets/images/png/default-avatar.png'){ %>
+                                    <img src='<%= friend.to_user.avatar %>' alt='<%= friend.to_user.name %>'
+                                         class='profile-picture'>
+                                <% } else{ %>
+                                    <img src='/images/png/default-avatar.png' alt='<%= friend.to_user.name %>'
+                                         class='profile-picture'>
+                                <% } %>
+
+                                <a href="/users/profile/<%= friend.to_user.id %>" class="user-friend-name">
+                                    <%= friend.to_user.name %>
+                                </a>
+
+                                <a href="/friends/friendship/remove/<%= friend.id %>"
+                                   class="remove-friend remove-add-btn" style='background-color: red'>Remove</a>
+                            </li>
+                        <% } %>
+                    </div>
+                <% }else{ %>
+                    <p class='no-friends'>You have no friends.Add the other users as your friend.</p>
+                <% } %>
+            </section>
+        <% } %>
+
+        <!-- All users -->
+        <section id="user-friends">
+            <h3>Users</h3>
+            <div style='display: flex;flex-direction: column;align-items: flex-start'>
+                <% for(u of all_users){ %>
+                    <% if(locals.user && u.id !== locals.user.id){ %>
+                        <li>
+                            <% if (u.avatar && u.avatar !== '/assets/images/png/default-avatar.png'){ %>
+                                <img src='<%= u.avatar %>' alt='<%= u.name %>' class='profile-picture'>
+                            <% } else{ %>
+                                <img src='/images/png/default-avatar.png' alt='<%= u.name %>' class='profile-picture'>
+                            <% } %>
+
+                            <a href="/users/profile/<%= u.id; %>" class="user-friend-name">
+                                <%= u.name; %>
+                            </a>
+
+                            <a class="add-friend-btn remove-add-btn"
+                               href="/friends/friendship/add/?toUser=<%= u._id %>">
+                                Add
+                            </a>
+                        </li>
+                    <% } else if(!locals.user){ %>
+                        <li>
+                            <% if (u.avatar && u.avatar !== '/assets/images/png/default-avatar.png'){ %>
+                                <img src='<%= u.avatar %>' alt='<%= u.name %>' class='profile-picture'>
+                            <% } else{ %>
+                                <img src='/images/png/default-avatar.png' alt='<%= u.name %>' class='profile-picture'>
+                            <% } %>
+
+                            <a href="/users/profile/<%= u.id; %>" class="user-friend-name">
+                                <%= u.name; %>
+                            </a>
+                        </li>
+                    <% } %>
+                <% } %>
+            </div>
+        </section>
+
+
+    </div>
 </div>
 
 <!-- importing this script for creating the comments -->
@@ -41,9 +105,10 @@
 
 <!-- CHANGE :: import the script file for toggle likes, also run it over for the already present posts and comments on the page -->
 <script src="js/toggle_likes.js"></script>
+<script src="/js/friend_request"></script>
 <script>
-    $('.toggle-like-button').each(function () {
-        let self = this;
-        let toggleLike = new ToggleLike(self);
-    });
+  $('.toggle-like-button').each(function() {
+    let self = this;
+    let toggleLike = new ToggleLike(self);
+  });
 </script>

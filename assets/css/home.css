@@ -1,5 +1,7 @@
 #home-container {
-  display: flex; }
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between; }
   #home-container #feed-posts {
     flex: 1;
     padding: 10px; }
@@ -17,7 +19,7 @@
         display: flex;
         flex-wrap: wrap; }
         #home-container #feed-posts #post-container #posts-list-container ul .posts {
-          flex: 0 0 45%;
+          flex: 0 0 40%;
           margin: 8px;
           display: flex;
           flex-direction: column;
@@ -90,29 +92,40 @@
               cursor: pointer; }
               #home-container #feed-posts #post-container #posts-list-container ul .posts .like-container .fa-heart.liked {
                 color: red; }
-  #home-container #user-friends {
+  #home-container #friends-container {
+    display: flex;
+    flex-direction: column;
     width: 25%;
-    padding: 10px; }
-    #home-container #user-friends h3 {
-      font-size: 1.6rem;
-      font-weight: bolder;
-      color: #0e2954;
+    overflow-y: auto; }
+    #home-container #friends-container #user-friends {
       padding: 10px;
-      text-align: center; }
-    #home-container #user-friends p {
-      margin-bottom: 8px;
-      font-size: 1rem;
-      color: #333;
-      transition: color 0.3s;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-family: 'Cascadia Mono'; }
-      #home-container #user-friends p a {
-        text-decoration: none;
-        color: #5e5c5c; }
-        #home-container #user-friends p a:hover {
-          color: red; }
+      height: 40%; }
+      #home-container #friends-container #user-friends h3 {
+        font-size: 1.6rem;
+        font-weight: bolder;
+        color: #0e2954;
+        padding: 10px;
+        text-align: center; }
+      #home-container #friends-container #user-friends li {
+        margin-bottom: 8px;
+        font-size: 1rem;
+        color: #333;
+        transition: color 0.3s;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: 'Cascadia Mono'; }
+        #home-container #friends-container #user-friends li .user-friend-name {
+          text-decoration: none;
+          color: #5e5c5c; }
+          #home-container #friends-container #user-friends li .user-friend-name:hover {
+            color: red; }
+        #home-container #friends-container #user-friends li .profile-picture {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          object-fit: cover;
+          margin-right: 8px; }
   #home-container #new-post-form {
     display: flex;
     align-items: center;
@@ -141,3 +154,21 @@
 
 .deleted {
   color: red; }
+
+.profile-picture-default {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: white; }
+
+.no-friends {
+  color: grey;
+  padding: 75px;
+  font-size: 1.2rem;
+  text-align: center;
+  font-family: 'Cascadia Mono'; }

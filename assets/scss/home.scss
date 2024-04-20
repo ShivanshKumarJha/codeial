@@ -1,5 +1,7 @@
 #home-container {
   display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 
   #feed-posts {
     flex: 1;
@@ -23,7 +25,7 @@
         flex-wrap: wrap;
 
         .posts {
-          flex: 0 0 45%;
+          flex: 0 0 40%;
           margin: 8px;
           display: flex;
           flex-direction: column;
@@ -131,34 +133,49 @@
     }
   }
 
-  #user-friends {
+  #friends-container {
+    display: flex;
+    flex-direction: column;
     width: 25%;
-    padding: 10px;
+    overflow-y: auto;
 
-    h3 {
-      font-size: 1.6rem;
-      font-weight: bolder;
-      color: #0e2954;
+    #user-friends {
       padding: 10px;
-      text-align: center;
-    }
+      height: 40%;
 
-    p {
-      margin-bottom: 8px;
-      font-size: 1rem;
-      color: #333;
-      transition: color 0.3s;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-family: 'Cascadia Mono';
+      h3 {
+        font-size: 1.6rem;
+        font-weight: bolder;
+        color: #0e2954;
+        padding: 10px;
+        text-align: center;
+      }
 
-      a {
-        text-decoration: none;
-        color: rgb(94, 92, 92);
+      li {
+        margin-bottom: 8px;
+        font-size: 1rem;
+        color: #333;
+        transition: color 0.3s;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: 'Cascadia Mono';
 
-        &:hover {
-          color: red;
+        .user-friend-name {
+          text-decoration: none;
+          color: rgb(94, 92, 92);
+
+          &:hover {
+            color: red;
+          }
+        }
+
+        .profile-picture {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          object-fit: cover;
+          margin-right: 8px;
         }
       }
     }
@@ -202,4 +219,24 @@
 
 .deleted {
   color: red;
+}
+
+.profile-picture-default {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: white;
+}
+
+.no-friends {
+  color: grey;
+  padding: 75px;
+  font-size: 1.2rem;
+  text-align: center;
+  font-family: 'Cascadia Mono';
 }

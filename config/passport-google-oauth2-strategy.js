@@ -9,12 +9,12 @@ const User = require('../models/user');
 passport.use(
   new GoogleStrategy(
     {
-      clientID:
-        '487633727199-6i37vsccq1na0b3rm4hb7dtdo7oe1i6k.apps.googleusercontent.com',
+      clientID: process.env.CLIENT_ID,
       clientSecret: process.env.CLIENT_SECRET,
-      callbackURL: 'http://localhost:8000/users/auth/google/callback',
+      callbackURL: (process.env.NODE_ENV === 'production' ?
+        process.env.PROD_URL : process.env.LOCAL_URL)
     },
-    async function (accessToken, refreshToken, profile, done) {
+    async function(accessToken, refreshToken, profile, done) {
       try {
         // find the user
         const user = await User.findOne({ email: profile.emails[0].value });
@@ -29,7 +29,7 @@ passport.use(
           const newUser = await User.create({
             name: profile.displayName,
             email: profile.emails[0].value,
-            password: crypto.randomBytes(20).toString('hex'),
+            password: crypto.randomBytes(20).toString('hex')
           });
 
           return done(null, newUser);
