@@ -10,6 +10,7 @@ module.exports.addFriend = async function(request, response) {
     const toUserId = request.query.toUser;
 
     let existingFriend = await Friendship.findOne({
+      from_user: fromUserId,
       to_user: toUserId
     });
 
