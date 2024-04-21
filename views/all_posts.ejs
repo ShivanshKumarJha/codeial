@@ -1,34 +1,38 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 <link rel="stylesheet" href="/css/posts.css">
 
+<div class="heading-container">
+    <h1 class="heading">Your Posts</h1>
+</div>
+
 <ul>
-    <% if(posts.length==0){ %>
+    <% if(posts.length == 0){ %>
         <h2 class="no-post">No posts published!</h2>
-        <% }%>
-            <% posts.forEach(function(post) { %>
-                <li id="posts-<%= post._id %>" class="posts">
-                    <div class="post-header">
-                        <img src="<%= user.avatar %>" alt="<%= post.user.name %>'s Avatar">
-                        <div class="post-content">
-                            <p>
-                                <%= post.content %>
-                            </p>
-                            <small>
-                                <span>Name: <%= user.name %></span><br>
-                                <span>Posted at: <%= new Date(post.createdAt).toLocaleString() %></span><br>
-                                <span>
+    <% } %>
+    <% posts.forEach(function(post) { %>
+        <li id="posts-<%= post._id %>" class="posts">
+            <div class="post-header">
+                <img src="<%= user.avatar %>" alt="<%= post.user.name %>'s Avatar">
+                <div class="post-content">
+                    <p>
+                        <%= post.content %>
+                    </p>
+                    <small>
+                        <span>Name: <%= user.name %></span><br>
+                        <span>Posted at: <%= new Date(post.createdAt).toLocaleString() %></span><br>
+                        <span>
                                     <%= post.comments.length %> comments
                                 </span>
-                                &nbsp;&nbsp;
-                                <span><a href="">View Comments</a></span>
-                                &nbsp;&nbsp;
-                                <span><a href="/posts/destroy/<%= post.id %>"><i
-                                            class="fa-regular fa-circle-xmark"></i></a></span><br>
-                            </small>
-                        </div>
-                    </div>
-                </li>
-                <% }); %>
+                        &nbsp;&nbsp;
+                        <span><a href="">View Comments</a></span>
+                        &nbsp;&nbsp;
+                        <span><a href="/posts/destroy/<%= post.id %>"><i
+                                        class="fa-regular fa-circle-xmark"></i></a></span><br>
+                    </small>
+                </div>
+            </div>
+        </li>
+    <% }); %>
 </ul>
 
 

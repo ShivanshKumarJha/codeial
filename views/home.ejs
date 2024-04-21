@@ -62,22 +62,26 @@
             <div style='display: flex;flex-direction: column;align-items: flex-start'>
                 <% for(u of all_users){ %>
                     <% if(locals.user && u.id !== locals.user.id){ %>
-                        <li>
-                            <% if (u.avatar && u.avatar !== '/assets/images/png/default-avatar.png'){ %>
-                                <img src='<%= u.avatar %>' alt='<%= u.name %>' class='profile-picture'>
-                            <% } else{ %>
-                                <img src='/images/png/default-avatar.png' alt='<%= u.name %>' class='profile-picture'>
-                            <% } %>
+                        <% const isFriend = all_friends.some(friend => friend.to_user.id === u.id || friend.from_user.id === u.id); %>
+                        <% if (!isFriend) { %>
+                            <li>
+                                <% if (u.avatar && u.avatar !== '/assets/images/png/default-avatar.png'){ %>
+                                    <img src='<%= u.avatar %>' alt='<%= u.name %>' class='profile-picture'>
+                                <% } else{ %>
+                                    <img src='/images/png/default-avatar.png' alt='<%= u.name %>'
+                                         class='profile-picture'>
+                                <% } %>
 
-                            <a href="/users/profile/<%= u.id; %>" class="user-friend-name">
-                                <%= u.name; %>
-                            </a>
+                                <a href="/users/profile/<%= u.id; %>" class="user-friend-name">
+                                    <%= u.name; %>
+                                </a>
 
-                            <a class="add-friend-btn remove-add-btn"
-                               href="/friends/friendship/add/?toUser=<%= u._id %>">
-                                Add
-                            </a>
-                        </li>
+                                <a class="add-friend-btn remove-add-btn"
+                                   href="/friends/friendship/add/?toUser=<%= u._id %>">
+                                    Add
+                                </a>
+                            </li>
+                        <% } %>
                     <% } else if(!locals.user){ %>
                         <li>
                             <% if (u.avatar && u.avatar !== '/assets/images/png/default-avatar.png'){ %>
@@ -94,8 +98,6 @@
                 <% } %>
             </div>
         </section>
-
-
     </div>
 </div>
 

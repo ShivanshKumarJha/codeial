@@ -1,44 +1,45 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 <footer id="layout-footer">
-  <div class="footer-content">
-    <div class="footer-section">
-      <p class="brand-name">Codeial</p>
-      <p class="tagline">Connecting Coders Worldwide</p>
+    <div class="footer-content">
+        <div class="footer-section">
+            <p class="brand-name">Codeial</p>
+            <p class="tagline">Connecting Coders Worldwide</p>
+        </div>
+
+        <div class="footer-section">
+            <nav class="footer-nav">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <% if(locals.user){ %>
+                        <li><a href="/users/profile/<%= user.id %>">Profile</a></li>
+                        <!-- TODO to make the my friends route,controller and views -->
+                        <li><a href="/friends/all-friends/<%= locals.user.id %>">Friends</a></li>
+                    <% } %>
+                </ul>
+            </nav>
+        </div>
+
+        <div class="footer-section">
+            <div class="social-icons">
+                <a href="https://twitter.com/shivansh2003_26" target="_blank" title="Twitter"><i
+                            class="fab fa-twitter"></i></a>
+
+                <a href="https://www.facebook.com/people/shivansh-kumar-jha/pfbid04g8hfhxzkvarq1bizqzvk7lkcmfkydqfzw8artojaaeucvjnk4zcce13lrnus8msl/?mibextid=zbwkwl"
+                   target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+
+                <a href="https://www.instagram.com/shivanshkumar.jha/" target="_blank" title="Instagram"><i
+                            class="fab fa-instagram"></i></a>
+
+                <a href="https://www.linkedin.com/in/shivansh-kumar-jha-4b3141234/" target="_blank" title="LinkedIn"><i
+                            class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+
+        <div class="footer-section">
+            <div class="contact-info">
+                <p>NIT Kurukshetra, Haryana-121009</p>
+                <p>Email: kumarjhashivansh@gmail.com</p>
+            </div>
+        </div>
     </div>
-
-    <div class="footer-section">
-      <nav class="footer-nav">
-        <ul>
-          <li><a href="/">Home</a></li>
-          <% if(locals.user){ %>
-            <li><a href="/users/profile/<%= user.id %>">Profile</a></li>
-            <!-- TODO to make the my friends route,controller and views -->
-            <li><a href="">Friends</a></li>
-            <% } %>
-        </ul>
-      </nav>
-    </div>
-
-    <div class="footer-section">
-      <div class="social-icons">
-        <a href="https://twitter.com/shivansh2003_26" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
-
-        <a href="https://www.facebook.com/people/shivansh-kumar-jha/pfbid04g8hfhxzkvarq1bizqzvk7lkcmfkydqfzw8artojaaeucvjnk4zcce13lrnus8msl/?mibextid=zbwkwl"
-          target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-
-        <a href="https://www.instagram.com/shivanshkumar.jha/" target="_blank" title="Instagram"><i
-            class="fab fa-instagram"></i></a>
-
-        <a href="https://www.linkedin.com/in/shivansh-kumar-jha-4b3141234/" target="_blank" title="LinkedIn"><i
-            class="fab fa-linkedin-in"></i></a>
-      </div>
-    </div>
-
-    <div class="footer-section">
-      <div class="contact-info">
-        <p>NIT Kurukshetra, Haryana-121009</p>
-        <p>Email: kumarjhashivansh@gmail.com</p>
-      </div>
-    </div>
-  </div>
 </footer>

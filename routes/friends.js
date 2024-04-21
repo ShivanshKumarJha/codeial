@@ -11,4 +11,7 @@ router.all('/friendship/add', passport.checkAuthentication, friendController.add
 // Remove a friend
 router.get('/friendship/remove/:id', passport.checkAuthentication, friendController.removeFriend);
 
+// To get the all friends
+router.get('/all-friends/:id', passport.checkAuthentication, friendController.getAllFriends);
+
 module.exports = router;

@@ -5,7 +5,7 @@ const res = require('express/lib/response');
 // Send a friend request
 module.exports.addFriend = async function(request, response) {
   try {
-    console.log('inside friend controller');
+    // console.log('inside friend controller');
     const fromUserId = request.user.id;
     const toUserId = request.query.toUser;
 
@@ -33,15 +33,6 @@ module.exports.addFriend = async function(request, response) {
       await Promise.all([fromUser.save(), toUser.save()]);
       console.log('Added the friend');
 
-      // if (request.xhr) {
-      //   return response.status(200).json({
-      //     message: 'Friend request sent successfully',
-      //     data: {
-      //       fromUser: fromUser,
-      //       toUser: toUser
-      //     }
-      //   });
-      // }
       response.redirect('back');
     } else {
       console.log('existing friend');
@@ -52,9 +43,10 @@ module.exports.addFriend = async function(request, response) {
   }
 };
 
+
 module.exports.removeFriend = async function(request, response) {
   try {
-    console.log('Inside remove friend module');
+    // console.log('Inside remove friend module');
     const friendDelete = await Friendship.findById(request.params.id);
 
     if (friendDelete) {
@@ -67,17 +59,69 @@ module.exports.removeFriend = async function(request, response) {
       }
 
       console.log('Removed the friend');
-      // if (request.xhr) {
-      //   return response.status(200).json({
-      //     data: {
-      //       to_user: request.params.id
-      //     },
-      //     message: 'Friend deleted'
-      //   });
-      // }
       response.redirect('back');
     }
   } catch (error) {
     console.log('error in delete friend', error);
   }
 };
+
+
+module.exports.getAllFriends = async function(req, res) {
+  console.log('Inside the all friends controller');
+  try {
+    const userId = req.params.id;
+
+    // Find the user by ID and populate the friendships
+    const user = await User.findById(userId).populate({
+      path: 'friendships',
+      match: { from_user: userId },
+      populate: {
+        path: 'to_user',
+        populate: [
+          { path: 'posts' },
+          { path: 'comments' },
+          { path: 'likes' },
+          { path: 'friendships', match: { from_user: userId } }
+        ]
+      }
+    });
+
+    // Extract the friends from the populated friendships
+    const friends = user.friendships.map(friendship => friendship.to_user);
+
+    // Create an array to hold friend-post associations
+    const friendPosts = [];
+
+    // Iterate over each friend to extract their posts, likes, and comments count
+    for (const friend of friends) {
+      const postsCount = friend.posts.length;
+      let likesCount = 0;
+      let commentsCount = 0;
+
+      // Calculate likes and comments count for each post of the friend
+      for (const post of friend.posts) {
+        likesCount += post.likes.length;
+        commentsCount += post.comments.length;
+      }
+
+      friendPosts.push({
+        friend: friend,
+        postsCount: postsCount,
+        likesCount: likesCount,
+        commentsCount: commentsCount
+      });
+    }
+
+    console.log('Friend posts are \n', friendPosts);
+
+    return res.render('all_friends', {
+      title: 'Codeial | Friends',
+      all_friends: friendPosts
+    });
+  } catch (err) {
+    console.log('***Error*** ', err);
+    res.redirect('back');
+  }
+};
+

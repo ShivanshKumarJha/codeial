@@ -50,10 +50,18 @@ const userSchema = new mongoose.Schema(
       }
     ],
 
+    likes: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Like'
+      }
+    ],
+
+
     friendships: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'FriendShip'
+        ref: 'Friendship'
       }
     ],
 

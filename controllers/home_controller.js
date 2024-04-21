@@ -23,7 +23,7 @@ module.exports.home = async function(request, response) {
           path: 'name'
         }
       });
-    console.log(loggedInUserId);
+    // console.log(loggedInUserId);
     return response.render('home', {
       title: 'Codeial | Home',
       posts: posts,
