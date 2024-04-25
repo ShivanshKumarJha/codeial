@@ -6,7 +6,6 @@ const postsApi = require('../../../controllers/api/v1/posts_api');
 
 router.get(
   '/',
-  passport.authenticate('jwt', { session: false }),
   postsApi.index
 );
 router.delete(

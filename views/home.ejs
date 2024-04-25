@@ -30,7 +30,7 @@
             <section id="user-friends">
                 <h3>Friends</h3>
                 <% if(all_friends.length > 0){ %>
-                    <div style='display: flex;flex-direction: column;align-items: flex-start'>
+                    <div style='display: flex;flex-direction: column;align-items: flex-start;overflow-y: hidden'>
                         <% for(friend of all_friends){ %>
                             <li id="friend-<%= friend.id %>">
                                 <% if (friend.to_user.avatar && friend.to_user.avatar !== '/assets/images/png/default-avatar.png'){ %>
@@ -59,7 +59,7 @@
         <!-- All users -->
         <section id="user-friends">
             <h3>Users</h3>
-            <div style='display: flex;flex-direction: column;align-items: flex-start'>
+            <div style='display: flex;flex-direction: column;align-items: flex-start;overflow-y: hidden'>
                 <% for(u of all_users){ %>
                     <% if(locals.user && u.id !== locals.user.id){ %>
                         <% const isFriend = all_friends.some(friend => friend.to_user.id === u.id || friend.from_user.id === u.id); %>

@@ -19,7 +19,7 @@
         display: flex;
         flex-wrap: wrap; }
         #home-container #feed-posts #post-container #posts-list-container ul .posts {
-          flex: 0 0 40%;
+          flex: 0 0 44%;
           margin: 8px;
           display: flex;
           flex-direction: column;
@@ -31,7 +31,7 @@
           #home-container #feed-posts #post-container #posts-list-container ul .posts:hover {
             cursor: pointer;
             border: 1px solid black;
-            box-shadow: 0 0 40px rgba(0, 0, 0, 0.1); }
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.2); }
           #home-container #feed-posts #post-container #posts-list-container ul .posts p {
             margin: 10px 0;
             line-height: 1.4;
@@ -74,7 +74,7 @@
               #home-container #feed-posts #post-container #posts-list-container ul .posts .posts-comments .posts-comments-list li {
                 background-color: white;
                 border: 1px solid #ccc;
-                border-radius: 4px;
+                border-radius: 8px;
                 padding: 10px;
                 margin: 2px; }
                 #home-container #feed-posts #post-container #posts-list-container ul .posts .posts-comments .posts-comments-list li small {
@@ -98,8 +98,7 @@
     width: 25%;
     overflow-y: auto; }
     #home-container #friends-container #user-friends {
-      padding: 10px;
-      height: 40%; }
+      padding: 6px; }
       #home-container #friends-container #user-friends h3 {
         font-size: 1.6rem;
         font-weight: bolder;
@@ -172,3 +171,14 @@
   font-size: 1.2rem;
   text-align: center;
   font-family: 'Cascadia Mono'; }
+
+body::-webkit-scrollbar {
+  width: 10px; }
+
+body::-webkit-scrollbar-track {
+  background: #2c3e50; }
+
+body::-webkit-scrollbar-thumb {
+  background-color: white;
+  border-radius: 50px;
+  border: 2px solid teal; }
