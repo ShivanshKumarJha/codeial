@@ -36,7 +36,6 @@ module.exports.create = async function (request, response) {
   }
 };
 
-
 module.exports.destroy = async function (req, res) {
   try {
     const comment = await Comment.findById(req.params.id);
@@ -73,5 +72,3 @@ module.exports.destroy = async function (req, res) {
     return res.status(500).send('Internal Server Error');
   }
 };
-
-// TODO delete the posts and comments associated with the user when some post and comment is deleted

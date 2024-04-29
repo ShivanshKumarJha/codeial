@@ -19,13 +19,18 @@ const sassMiddleWare = require('node-sass-middleware');
 const flash = require('connect-flash');
 const customMware = require('./config/middleware');
 
+const chatServer = require('http').Server(app);
+const chatSockets = require('./config/chat_socket').chatSockets(chatServer);
+chatServer.listen(5000);
+console.log(`Chat server is listening on port 5000`);
+
 app.use(
   sassMiddleWare({
     src: './assets/scss',
     dest: './assets/css',
     debug: true,
     outputStyle: 'extended',
-    prefix: '/css'
+    prefix: '/css',
   })
 );
 
@@ -44,17 +49,16 @@ app.set('views', './views');
 app.use(
   session({
     name: 'codeial',
-    // TODO change the secret before deployment in production mode
-    secret: 'blahsomething',
+    secret: process.env.SECRET,
     saveUninitialized: false,
     resave: false,
     cookie: {
-      maxAge: 1000 * 60 * 100
+      maxAge: 1000 * 60 * 100,
     },
     store: MongoStore.create({
       mongoUrl: process.env.MONGODB_URI,
-      autoRemove: 'disabled'
-    })
+      autoRemove: 'disabled',
+    }),
   })
 );
 
@@ -67,7 +71,7 @@ app.use(customMware.setFlash);
 
 app.use('/', require('./routes'));
 
-app.listen(port, function(err) {
+app.listen(port, function (err) {
   if (err) {
     console.log(`Error in running the server: ${err}`);
   }

@@ -3,31 +3,30 @@
 <li id="posts-<%= post._id %>" class="posts">
     <div class="post-header">
         <p>
-            <% if(locals.user && post.user && locals.user.id == post.user.id) { %>
+            <% if(locals.user && post.user && locals.user.id==post.user.id) { %>
                 <small style="font-size: 1.2rem;">
                     <a href="/posts/destroy/<%= post._id %>"><i class="far fa-times-circle"></i></a>
                 </small>
-            <% } %>
-            <small style="color: black;font-size: 1.5rem;">
-                <%= post.content %>
-                <br />
-            </small>
-            <small style="font-size: 1rem;">
-                <%= post.user ? post.user.name : 'Unknown' %>
-            </small>
-            <small class="like-container">
-                <% if(locals.user) { %>
-                    <a class="toggle-like-button" data-postid="<%= post._id %>"
-                       data-likes="<%= post.likes.length %>" href="/likes/toggle/?id=<%= post._id %>&type=Post"
-                       style="text-decoration: none;">
-                        <i class="fa-regular fa-heart"></i>
-                        <%= post.likes.length %> Likes
-                    </a>
-                <% } else { %>
-                    <i class="fas fa-heart" style="color: red;"></i>
-                    <%= post.likes.length %> Likes
                 <% } %>
-            </small>
+                    <small style="color: black;font-size: 1.5rem;">
+                        <%= post.content %>
+                            <br />
+                    </small>
+                    <small style="font-size: 1rem;">
+                        <%= post.user ? post.user.name : 'Unknown' %>
+                    </small>
+                    <small>
+                        <% if(locals.user){ %>
+                            <a class="toggle-like-button" data-likes="<%= post.likes.length %>"
+                                href="/likes/toggle/?id=<%=post._id%>&type=Post">
+                                <i class="fa-regular fa-heart"></i>
+                                <%= post.likes.length %>
+                            </a>
+                            <% }else{ %>
+                                <i class="fas fa-heart" style="color: red;"></i>
+                                <%= post.likes.length %>
+                                    <% } %>
+                    </small>
         </p>
         <small class="post-date">
             <%= new Date(post.createdAt).toLocaleString() %>
@@ -40,13 +39,13 @@
                 <input type="hidden" name="post" value="<%= post._id %>" />
                 <input type="submit" value="Add Comment" />
             </form>
-        <% } %>
-        <div class="posts-comments-list">
-            <ul id="posts-comments-<%= post._id %>">
-                <% for(comment of post.comments){ %>
-                    <%- include('_comment') %>
-                <% } %>
-            </ul>
-        </div>
+            <% } %>
+                <div class="posts-comments-list">
+                    <ul id="posts-comments-<%= post._id %>">
+                        <% for(comment of post.comments){ %>
+                            <%- include('_comment') %>
+                                <% } %>
+                    </ul>
+                </div>
     </div>
 </li>

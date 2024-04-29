@@ -3,6 +3,6 @@ const router = express.Router();
 const env = require('dotenv').config();
 const likesController = require('../controllers/likes_controller');
 
-router.get('/toggle', likesController.toggleLike);
+router.post('/toggle', likesController.toggleLike);
 
 module.exports = router;

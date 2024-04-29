@@ -62,7 +62,7 @@ module.exports.destroy = async function (req, res) {
 };
 
 module.exports.getPosts = async function (req, res) {
-  console.log('Entered the controller');
+  // console.log('Entered the controller');
 
   try {
     const postByUser = await User.findById(req.params.id)

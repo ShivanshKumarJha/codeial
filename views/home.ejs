@@ -5,21 +5,20 @@
     <div id="feed-posts">
         <h3>Posts 📝</h3>
         <div id="post-container">
-
             <% if(locals.user){ %>
                 <form action="/posts/create" id="new-post-form" method="POST">
                     <textarea name="content" id="" cols="100" rows="3" placeholder="Type here..." required></textarea>
                     <input type="submit" value="Post" />
                 </form>
-            <% } %>
+                <% } %>
 
-            <div id="posts-list-container">
-                <ul>
-                    <% for(post of posts){ %>
-                        <%- include('_post') %>
-                    <% } %>
-                </ul>
-            </div>
+                    <div id="posts-list-container">
+                        <ul>
+                            <% for(post of posts){ %>
+                                <%- include('_post') %>
+                                    <% } %>
+                        </ul>
+                    </div>
 
         </div>
     </div>
@@ -29,88 +28,116 @@
         <% if(locals.user) { %>
             <section id="user-friends">
                 <h3>Friends</h3>
-                <% if(all_friends.length > 0){ %>
+                <% if(all_friends.length> 0){ %>
                     <div style='display: flex;flex-direction: column;align-items: flex-start;overflow-y: hidden'>
                         <% for(friend of all_friends){ %>
                             <li id="friend-<%= friend.id %>">
-                                <% if (friend.to_user.avatar && friend.to_user.avatar !== '/assets/images/png/default-avatar.png'){ %>
+                                <% if (friend.to_user.avatar && friend.to_user.avatar
+                                    !=='/assets/images/png/default-avatar.png' ){ %>
                                     <img src='<%= friend.to_user.avatar %>' alt='<%= friend.to_user.name %>'
-                                         class='profile-picture'>
-                                <% } else{ %>
-                                    <img src='/images/png/default-avatar.png' alt='<%= friend.to_user.name %>'
-                                         class='profile-picture'>
-                                <% } %>
+                                        class='profile-picture'>
+                                    <% } else{ %>
+                                        <img src='/images/png/default-avatar.png' alt='<%= friend.to_user.name %>'
+                                            class='profile-picture'>
+                                        <% } %>
 
-                                <a href="/users/profile/<%= friend.to_user.id %>" class="user-friend-name">
-                                    <%= friend.to_user.name %>
-                                </a>
+                                            <a href="/users/profile/<%= friend.to_user.id %>" class="user-friend-name">
+                                                <%= friend.to_user.name %>
+                                            </a>
 
-                                <a href="/friends/friendship/remove/<%= friend.id %>"
-                                   class="remove-friend remove-add-btn" style='background-color: red'>Remove</a>
+                                            <a href="/friends/friendship/remove/<%= friend.id %>"
+                                                class="remove-friend remove-add-btn"
+                                                style='background-color: red'>Remove</a>
                             </li>
-                        <% } %>
-                    </div>
-                <% }else{ %>
-                    <p class='no-friends'>You have no friends.Add the other users as your friend.</p>
-                <% } %>
-            </section>
-        <% } %>
-
-        <!-- All users -->
-        <section id="user-friends">
-            <h3>Users</h3>
-            <div style='display: flex;flex-direction: column;align-items: flex-start;overflow-y: hidden'>
-                <% for(u of all_users){ %>
-                    <% if(locals.user && u.id !== locals.user.id){ %>
-                        <% const isFriend = all_friends.some(friend => friend.to_user.id === u.id || friend.from_user.id === u.id); %>
-                        <% if (!isFriend) { %>
-                            <li>
-                                <% if (u.avatar && u.avatar !== '/assets/images/png/default-avatar.png'){ %>
-                                    <img src='<%= u.avatar %>' alt='<%= u.name %>' class='profile-picture'>
-                                <% } else{ %>
-                                    <img src='/images/png/default-avatar.png' alt='<%= u.name %>'
-                                         class='profile-picture'>
-                                <% } %>
-
-                                <a href="/users/profile/<%= u.id; %>" class="user-friend-name">
-                                    <%= u.name; %>
-                                </a>
-
-                                <a class="add-friend-btn remove-add-btn"
-                                   href="/friends/friendship/add/?toUser=<%= u._id %>">
-                                    Add
-                                </a>
-                            </li>
-                        <% } %>
-                    <% } else if(!locals.user){ %>
-                        <li>
-                            <% if (u.avatar && u.avatar !== '/assets/images/png/default-avatar.png'){ %>
-                                <img src='<%= u.avatar %>' alt='<%= u.name %>' class='profile-picture'>
-                            <% } else{ %>
-                                <img src='/images/png/default-avatar.png' alt='<%= u.name %>' class='profile-picture'>
                             <% } %>
+                    </div>
+                    <% }else{ %>
+                        <p class='no-friends'>You have no friends.Add the other users as your friend.</p>
+                        <% } %>
+            </section>
+            <% } %>
 
-                            <a href="/users/profile/<%= u.id; %>" class="user-friend-name">
-                                <%= u.name; %>
-                            </a>
-                        </li>
-                    <% } %>
-                <% } %>
-            </div>
-        </section>
+                <!-- All users who are not friends -->
+                <% const nonFriends=all_users.filter(u=> !all_friends.some(f => f.to_user.id === u.id || f.from_user.id
+                    === u.id)); %>
+                    <% if (nonFriends.length> 1) { %>
+                        <section id="user-friends">
+                            <h3>Users</h3>
+                            <div
+                                style='display: flex;flex-direction: column;align-items: flex-start;overflow-y: hidden'>
+                                <% for(u of nonFriends){ %>
+                                    <% if(locals.user && u.id !==locals.user.id){ %>
+                                        <% const isFriend=all_friends.some(friend=> friend.to_user.id === u.id ||
+                                            friend.from_user.id === u.id); %>
+                                            <% if (!isFriend) { %>
+                                                <li>
+                                                    <% if (u.avatar && u.avatar
+                                                        !=='/assets/images/png/default-avatar.png' ){ %>
+                                                        <img src='<%= u.avatar %>' alt='<%= u.name %>'
+                                                            class='profile-picture'>
+                                                        <% } else{ %>
+                                                            <img src='/images/png/default-avatar.png'
+                                                                alt='<%= u.name %>' class='profile-picture'>
+                                                            <% } %>
+
+                                                                <a href="/users/profile/<%= u.id; %>"
+                                                                    class="user-friend-name">
+                                                                    <%= u.name; %>
+                                                                </a>
+
+                                                                <a class="add-friend-btn remove-add-btn"
+                                                                    href="/friends/friendship/add/?toUser=<%= u._id %>">
+                                                                    Add
+                                                                </a>
+                                                </li>
+                                                <% } %>
+                                                    <% } else if(!locals.user){ %>
+                                                        <li>
+                                                            <% if (u.avatar && u.avatar
+                                                                !=='/assets/images/png/default-avatar.png' ){ %>
+                                                                <img src='<%= u.avatar %>' alt='<%= u.name %>'
+                                                                    class='profile-picture'>
+                                                                <% } else{ %>
+                                                                    <img src='/images/png/default-avatar.png'
+                                                                        alt='<%= u.name %>' class='profile-picture'>
+                                                                    <% } %>
+
+                                                                        <a href="/users/profile/<%= u.id; %>"
+                                                                            class="user-friend-name">
+                                                                            <%= u.name; %>
+                                                                        </a>
+                                                        </li>
+                                                        <% } %>
+                                                            <% } %>
+                            </div>
+                        </section>
+                        <% } else { %>
+                            <p class='no-friends'>All users are your mutual friends.</p>
+                            <% } %>
+                                <div id="chat-icon-container">
+                                    <img src="/images/png/chat.png" alt="Chat Icon" id="chat-icon">
+                                </div>
+                                <%- include('_chat_box') -%>
     </div>
 </div>
 
-<!-- importing this script for creating the comments -->
-<script src="/js/home_post_comments.js"></script>
-<script src="/js/home_posts.js"></script>
-
-<!-- CHANGE :: import the script file for toggle likes, also run it over for the already present posts and comments on the page -->
 <script src="js/toggle_likes.js"></script>
-<script src="/js/friend_request"></script>
+<script src='js/chat_icon.js'></script>
 <script>
-  $('.toggle-like-button').each(function() {
-    let self = this;
-    let toggleLike = new ToggleLike(self);
-  });
+    $('.toggle-like-button').each(function () {
+        let self = this;
+        let toggleLike = new ToggleLike(self);
+    });
 </script>
+
+<!-- socket.io link  -->
+<script src="https://cdn.socket.io/4.7.5/socket.io.min.js"
+    integrity="sha384-2huaZvOR9iDzHqslqwpR87isEmrfxqyWOF7hr7BY6KG0+hVKLoEXMPUJw3ynWuhO"
+    crossorigin="anonymous"></script>
+
+<script src="js/chat_engine.js"></script>
+<% if(locals.user){%>
+    <script>
+        new ChatEngine('chatbox', '<%= locals.user.email %>', '<%= locals.user.name %>');
+    </script>
+    <% } %>
