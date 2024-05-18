@@ -55,7 +55,7 @@ module.exports.signUp = function (request, response) {
     // request.flash('success', 'Account exists!');
     return response.redirect('/users/profile');
   }
-  // request.flash('success', 'Account created!');
+  request.flash('success', 'Account created!');
   return response.render('user_sign_up', {
     title: 'Codeial | Sign Up',
   });
@@ -82,6 +82,7 @@ module.exports.create = async function (request, response) {
 
     if (!existingUser) {
       const newUser = await User.create(request.body);
+      postsMailer.signupSuccess(newUser.email);
       return response.redirect('/users/sign-in');
     } else return response.redirect('back');
   } catch (error) {

@@ -4,6 +4,7 @@ const app = express();
 const cookieParser = require('cookie-parser');
 const env = require('dotenv').config();
 const port = process.env.PORT || 8000;
+const CHAT_PORT = process.env.CHAT_PORT || 8001;
 
 const expressLayouts = require('express-ejs-layouts');
 const db = require('./config/mongoose');
@@ -21,8 +22,8 @@ const customMware = require('./config/middleware');
 
 const chatServer = require('http').Server(app);
 const chatSockets = require('./config/chat_socket').chatSockets(chatServer);
-chatServer.listen(5000);
-console.log(`Chat server is listening on port 5000`);
+chatServer.listen(CHAT_PORT);
+console.log(`Chat server is listening on port ${CHAT_PORT}`);
 
 app.use(
   sassMiddleWare({
