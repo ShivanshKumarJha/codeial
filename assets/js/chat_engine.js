@@ -5,7 +5,7 @@ class ChatEngine {
     this.userName = userName;
 
     // this.socket = io('http://localhost:5000', { transports: ['websocket'] });
-    this.socket = io('http://codeial-social.onrender.com', {
+    this.socket = io('https://codeial-social.onrender.com', {
       transports: ['websocket'],
     });
     if (this.userEmail || this.userName) {
