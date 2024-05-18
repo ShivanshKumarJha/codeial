@@ -8,7 +8,7 @@ class ChatEngine {
       ? 'http://localhost:5000'
       : 'wss://codeial-social.onrender.com';
 
-    this.socket = io(socketBaseUrl, {
+    this.socket = io('http://localhost:5000', {
       transports: ['websocket'],
     });
 

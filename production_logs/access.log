@@ -37,8 +37,6 @@
 [0mGET / [36m304[0m 6195.842 ms - -[0m
 [0mGET /js/formatting.js [33m404[0m 2926.460 ms - 155[0m
 [0mGET /uploads/users/avatars/avatar-1715501191781-928068405 [33m404[0m 3575.735 ms - 191[0m
-    // this.socket = io('https://codeial-social.onrender.com', {
-    //   transports: ['websocket'],
-    // });[0mGET / [36m304[0m 1780.096 ms - -[0m
+[0mGET / [36m304[0m 1780.096 ms - -[0m
 [0mGET /js/formatting.js [33m404[0m 242.581 ms - 155[0m
 [0mGET /uploads/users/avatars/avatar-1715501191781-928068405 [33m404[0m 1313.900 ms - 191[0m
