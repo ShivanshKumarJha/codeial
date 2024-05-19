@@ -1,29 +1,42 @@
-<link rel='stylesheet' href='/css/friends.css'>
+<link rel='stylesheet' href="<%= assetPath('css/friends.css') %>">
 
-<div class="heading-container">
+<div class=" heading-container">
     <h1 class="heading">Your Friends</h1>
 </div>
 <ul class="friend-list">
     <% for (const friendData of all_friends) { %>
         <li class="friend-details">
-            <h2><%= friendData.friend.name %></h2>
+            <h2>
+                <%= friendData.friend.name %>
+            </h2>
 
-            <% if (friendData.friend.avatar && friendData.friend.avatar !== '/assets/images/png/default-avatar.png'){ %>
-                <img src='<%= friendData.friend.avatar %>' alt='<%= friendData.friend.name %>'
-                     class='profile-picture'>
-            <% } else{ %>
-                <img src='/images/png/default-avatar.png' alt='<%= friendData.friend.name %>'
-                     class='profile-picture'>
-            <% } %>
+            <% if (friendData.friend.avatar && friendData.friend.avatar !=='/assets/images/png/default-avatar.png' ){ %>
+                <img src='<%= friendData.friend.avatar %>' alt='<%= friendData.friend.name %>' class='profile-picture'>
+                <% } else{ %>
+                    <img src='/images/png/default-avatar.png' alt='<%= friendData.friend.name %>'
+                        class='profile-picture'>
+                    <% } %>
 
-            <div class='friend-details-data'>
-                <p id='friend-details-data-para'>Email: <span><%= friendData.friend.email %></span></p>
-                <p id='friend-details-data-para'>Address: <span><%= friendData.friend.address %></span></p>
-                <p id='friend-details-data-para'>Bio: <span><%= friendData.friend.description %></span></p>
-                <p id='friend-details-data-para'>Number of Posts: <span><%= friendData.postsCount %></span></p>
-                <p id='friend-details-data-para'>Number of Likes: <span><%= friendData.likesCount %></span></p>
-                <p id='friend-details-data-para'>Number of Comments: <span><%= friendData.commentsCount %></span></p>
-            </div>
+                        <div class='friend-details-data'>
+                            <p id='friend-details-data-para'>Email: <span>
+                                    <%= friendData.friend.email %>
+                                </span></p>
+                            <p id='friend-details-data-para'>Address: <span>
+                                    <%= friendData.friend.address %>
+                                </span></p>
+                            <p id='friend-details-data-para'>Bio: <span>
+                                    <%= friendData.friend.description %>
+                                </span></p>
+                            <p id='friend-details-data-para'>Number of Posts: <span>
+                                    <%= friendData.postsCount %>
+                                </span></p>
+                            <p id='friend-details-data-para'>Number of Likes: <span>
+                                    <%= friendData.likesCount %>
+                                </span></p>
+                            <p id='friend-details-data-para'>Number of Comments: <span>
+                                    <%= friendData.commentsCount %>
+                                </span></p>
+                        </div>
         </li>
-    <% } %>
+        <% } %>
 </ul>

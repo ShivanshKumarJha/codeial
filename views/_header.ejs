@@ -21,13 +21,12 @@
                     </div>
 
                     <li>
-                        <% if (user.avatar && user.avatar !== '/assets/images/png/default-avatar.png'){ %>
-                            <img src='<%= user.avatar %>' alt='<%= user.name %>'
-                                 class='profile-picture'>
-                        <% } else{ %>
-                            <img src='/images/png/default-avatar.png' alt='<%= user.name %>'
-                                 class='profile-picture'>
-                        <% } %>
+                        <% if (user.avatar && user.avatar !=='/assets/images/png/default-avatar.png' ){ %>
+                            <img src='<%= user.avatar %>' alt='<%= user.name %>' class='profile-picture'>
+                            <% } else{ %>
+                                <img src='/images/png/default-avatar.png' alt='<%= user.name %>'
+                                    class='profile-picture'>
+                                <% } %>
                     </li>
 
                     <div>
@@ -41,14 +40,14 @@
                         </li>
                     </div>
 
-                <% } else { %>
-                    <li>
-                        <a href="/users/sign-in">Sign In</a>
-                    </li>
-                    <li>
-                        <a href="/users/sign-up">Sign Up</a>
-                    </li>
-                <% } %>
+                    <% } else { %>
+                        <li>
+                            <a href="/users/sign-in">Sign In</a>
+                        </li>
+                        <li>
+                            <a href="/users/sign-up">Sign Up</a>
+                        </li>
+                        <% } %>
             </ul>
         </div>
     </nav>

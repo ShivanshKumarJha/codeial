@@ -1,5 +1,5 @@
-<link rel="stylesheet" href="/css/home.css">
-<link rel="stylesheet" href="/css/friend.css">
+<link rel="stylesheet" href="<%= assetPath('css/home.css') %>">
+<link rel="stylesheet" href="<%= assetPath('css/friend.css') %>">
 
 <div id="home-container">
     <div id="feed-posts">
@@ -121,8 +121,8 @@
     </div>
 </div>
 
-<script src="js/toggle_likes.js"></script>
-<script src='js/chat_icon.js'></script>
+<script src="<%= assetPath('js/toggle_likes.js') %>"></script>
+<script src="<%= assetPath('js/chat_icon.js') %>"></script>
 <script>
     $('.toggle-like-button').each(function () {
         let self = this;
@@ -135,7 +135,7 @@
     integrity="sha384-2huaZvOR9iDzHqslqwpR87isEmrfxqyWOF7hr7BY6KG0+hVKLoEXMPUJw3ynWuhO"
     crossorigin="anonymous"></script>
 
-<script src="js/chat_engine.js"></script>
+<script src="<%= assetPath('js/chat_engine.js') %>"></script>
 <% if(locals.user){%>
     <script>
         new ChatEngine('chatbox', '<%= locals.user.email %>', '<%= locals.user.name %>');

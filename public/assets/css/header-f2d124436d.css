@@ -1,0 +1,52 @@
+#layout-header {
+  background: teal;
+  color: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 5px 10px;
+  transition: background 0.3s ease; }
+  #layout-header nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; }
+    #layout-header nav .mini-logo {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center; }
+      #layout-header nav .mini-logo p {
+        margin: 0;
+        font-weight: bold; }
+        #layout-header nav .mini-logo p a img {
+          color: black;
+          filter: invert(100%);
+          transition: filter 0.3s ease-in-out; }
+          #layout-header nav .mini-logo p a img:hover {
+            filter: invert(90%); }
+    #layout-header nav .auth-links ul {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      list-style: none; }
+      #layout-header nav .auth-links ul div {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center; }
+      #layout-header nav .auth-links ul .user-profile {
+        display: flex;
+        align-items: center;
+        justify-content: center; }
+      #layout-header nav .auth-links ul li {
+        margin-right: 15px; }
+        #layout-header nav .auth-links ul li .profile-picture {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          object-fit: cover;
+          margin-right: 8px; }
+        #layout-header nav .auth-links ul li a {
+          color: white;
+          text-decoration: none;
+          transition: color 0.3s ease; }
+          #layout-header nav .auth-links ul li a:hover {
+            color: #a6e22e; }

@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="/css/form.css">
+<link rel="stylesheet" href="<%= assetPath('css/form.css') %>">
 <div class="main-container">
     <div class="left-section">
         <h2>About Codeial</h2>
@@ -33,7 +33,7 @@
         <div class="google-sign-in">
             <p class="text-muted">Or Sign In/Sign Up with</p>
             <a href="/users/auth/google" class="btn btn-danger google-btn">
-                <img src="/images/svg/google.svg" alt="" width="24" height="24" fill="#fff">
+                <img src="<%= assetPath('images/svg/google.svg') %>" alt="" width="24" height="24" fill="#fff">
                 Google
             </a>
             <a href="/users/reset-password">Forgot Password?</a>

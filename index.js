@@ -2,11 +2,13 @@ const express = require('express');
 const app = express();
 const logger = require('morgan');
 const { accessLogStream } = require('./config/environment');
+const path = require('path');
 
 const cookieParser = require('cookie-parser');
 const env = require('dotenv').config();
 const port = process.env.PORT || 8000;
 const CHAT_PORT = process.env.CHAT_PORT || 8001;
+require('./config/view-helpers')(app);
 
 const expressLayouts = require('express-ejs-layouts');
 const db = require('./config/mongoose');
@@ -28,6 +30,7 @@ const chatSockets = require('./config/chat_socket').chatSockets(chatServer);
 chatServer.listen(5000);
 console.log('Chat server is lisening on port 5000');
 
+// console.log(process.env.CODEIAL_ENVIRONMENT);
 if (process.env.CODEIAL_ENVIRONMENT == 'development') {
   app.use(
     sassMiddleWare({
@@ -43,8 +46,9 @@ app.use(express.urlencoded());
 app.use(cookieParser());
 
 app.use(express.static('./assets'));
-app.use('/uploads', express.static(__dirname + '/uploads'));
+app.use(express.static(__dirname + '/public/assets'));
 
+app.use('/uploads', express.static(__dirname + '/uploads'));
 app.use(logger(process.env.MORGAN_MODE, { stream: accessLogStream }));
 
 app.use(expressLayouts);

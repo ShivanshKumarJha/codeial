@@ -1,0 +1,66 @@
+.heading-container {
+  text-align: center;
+  margin: 20px; }
+
+.heading {
+  font-size: 2rem;
+  color: #333;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-family: "Cascadia Mono"; }
+
+ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+  justify-content: flex-start; }
+  ul .no-post {
+    color: red;
+    padding: 2rem;
+    margin: 0 auto; }
+  ul .posts {
+    background-color: #f9f9f9;
+    margin: 1rem;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    flex: 1;
+    min-width: 300px;
+    max-width: 400px; }
+    ul .posts:hover {
+      box-shadow: 0 0 5px;
+      cursor: pointer; }
+    ul .posts .post-header {
+      display: flex;
+      align-items: center;
+      gap: 10px; }
+      ul .posts .post-header img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%; }
+      ul .posts .post-header .post-content {
+        flex: 1; }
+        ul .posts .post-header .post-content p {
+          margin: 0;
+          font-size: 1.2rem;
+          font-weight: bold; }
+        ul .posts .post-header .post-content small {
+          color: #666;
+          font-size: 0.9rem;
+          display: block;
+          margin-top: 10px; }
+          ul .posts .post-header .post-content small a {
+            color: red;
+            text-decoration: none;
+            transition: color 0.3s; }
+            ul .posts .post-header .post-content small a:hover {
+              color: darkred; }
+    ul .posts .delete-btn {
+      cursor: pointer;
+      transition: color 0.3s; }
+      ul .posts .delete-btn:hover {
+        color: red; }
