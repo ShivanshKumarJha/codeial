@@ -82,7 +82,8 @@ module.exports.create = async function (request, response) {
 
     if (!existingUser) {
       const newUser = await User.create(request.body);
-      postsMailer.signupSuccess(newUser.email);
+      // console.log(`Inside the userSignup Code : ${newUser}`);
+      postsMailer.signupSuccess(newUser);
       return response.redirect('/users/sign-in');
     } else return response.redirect('back');
   } catch (error) {

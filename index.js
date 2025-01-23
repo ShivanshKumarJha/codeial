@@ -42,7 +42,7 @@ if (process.env.CODEIAL_ENVIRONMENT == 'development') {
     })
   );
 }
-app.use(express.urlencoded());
+app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 app.use(express.static('./assets'));
