@@ -1,51 +1,54 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+<header id="layout-header">
+    <nav>
+        <div class="mini-logo">
+            <p>
+                <a href="/">
+                    <img class="logo-icon" src="/images/svg/logo.svg" alt="" width="140">
+                </a>
+            </p>
+        </div>
 
-<li id="posts-<%= post._id %>" class="posts">
-    <div class="post-header">
-        <p>
-            <% if(locals.user && post.user && locals.user.id==post.user.id) { %>
-                <small style="font-size: 1.2rem;">
-                    <a href="/posts/destroy/<%= post._id %>"><i class="far fa-times-circle"></i></a>
-                </small>
-                <% } %>
-                    <small style="color: black;font-size: 1.5rem;">
-                        <%= post.content %>
-                            <br />
-                    </small>
-                    <small style="font-size: 1rem;">
-                        <%= post.user ? post.user.name : 'Unknown' %>
-                    </small>
-                    <small>
-                        <% if(locals.user){ %>
-                            <a class="toggle-like-button" data-likes="<%= post.likes.length %>"
-                                href="/likes/toggle/?id=<%=post._id%>&type=Post">
-                                <i class="fa-regular fa-heart"></i>
-                                <%= post.likes.length %>
-                            </a>
-                            <% }else{ %>
-                                <i class="fas fa-heart" style="color: red;"></i>
-                                <%= post.likes.length %>
-                                    <% } %>
-                    </small>
-        </p>
-        <small class="post-date">
-            <%= new Date(post.createdAt).toLocaleString() %>
-        </small>
-    </div>
-    <div class="posts-comments">
-        <% if(locals.user){ %>
-            <form action="/comments/create" method="POST">
-                <input type="text" name="content" placeholder="Type Here to add comment.." required />
-                <input type="hidden" name="post" value="<%= post._id %>" />
-                <input type="submit" value="Add Comment" />
-            </form>
-            <% } %>
-                <div class="posts-comments-list">
-                    <ul id="posts-comments-<%= post._id %>">
-                        <% for(comment of post.comments){ %>
-                            <%- include('_comment') %>
+        <div class="auth-links">
+            <ul>
+                <% if (locals.user) { %>
+                    <div>
+                        <li>
+                            <a href="/posts/<%= user.id; %>">Posts</a>
+                        </li>
+                        <li>
+                            <a href="/friends/all-friends/<%= locals.user.id %>">Friends</a>
+                        </li>
+                    </div>
+
+                    <li>
+                        <% if (user.avatar && user.avatar !=='/assets/images/png/default-avatar.png' ){ %>
+                            <img src='<%= user.avatar %>' alt='<%= user.name %>' class='profile-picture'>
+                            <% } else{ %>
+                                <img src='/images/png/default-avatar.png' alt='<%= user.name %>'
+                                    class='profile-picture'>
                                 <% } %>
-                    </ul>
-                </div>
-    </div>
-</li>
+                    </li>
+
+                    <div>
+                        <li>
+                            <a href="/users/profile/<%= user.id; %>">
+                                <%= user.name; %>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/users/sign-out">Sign Out</a>
+                        </li>
+                    </div>
+
+                    <% } else { %>
+                        <li>
+                            <a href="/users/sign-in">Sign In</a>
+                        </li>
+                        <li>
+                            <a href="/users/sign-up">Sign Up</a>
+                        </li>
+                        <% } %>
+            </ul>
+        </div>
+    </nav>
+</header>
