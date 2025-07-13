@@ -1,13 +1,12 @@
 const express = require('express');
 const app = express();
 const logger = require('morgan');
-const { accessLogStream } = require('./config/environment');
+const env = require('./config/environment');
 const path = require('path');
 
 const cookieParser = require('cookie-parser');
-const env = require('dotenv').config();
+const dotenv = require('dotenv').config();
 const port = process.env.PORT || 8000;
-const CHAT_PORT = process.env.CHAT_PORT || 8001;
 require('./config/view-helpers')(app);
 
 const expressLayouts = require('express-ejs-layouts');
@@ -27,8 +26,13 @@ const customMware = require('./config/middleware');
 // setup the chat server to be used with socket.io
 const chatServer = require('http').Server(app);
 const chatSockets = require('./config/chat_socket').chatSockets(chatServer);
-chatServer.listen(5000);
-console.log('Chat server is lisening on port 5000');
+
+// Use environment-based port for chat server
+const CHAT_PORT =
+  process.env.CHAT_PORT ||
+  (process.env.NODE_ENV === 'production' ? port : 5000);
+chatServer.listen(CHAT_PORT);
+console.log(`Chat server is listening on port ${CHAT_PORT}`);
 
 // console.log(process.env.CODEIAL_ENVIRONMENT);
 if (process.env.CODEIAL_ENVIRONMENT == 'development') {
@@ -49,7 +53,9 @@ app.use(express.static('./assets'));
 app.use(express.static(__dirname + '/public/assets'));
 
 app.use('/uploads', express.static(__dirname + '/uploads'));
-app.use(logger(process.env.MORGAN_MODE, { stream: accessLogStream }));
+app.use(
+  logger(process.env.MORGAN_MODE || 'combined', { stream: env.accessLogStream })
+);
 
 app.use(expressLayouts);
 app.set('layout extractStyles', true);
