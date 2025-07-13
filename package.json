@@ -8,6 +8,7 @@
     "dev": "nodemon index.js",
     "prod": "NODE_ENV=production node index.js",
     "build": "gulp build",
+    "postinstall": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -27,6 +28,7 @@
     "express": "^4.18.2",
     "express-ejs-layouts": "^2.5.1",
     "express-session": "^1.17.3",
+    "gulp": "^4.0.2",
     "gulp-cssnano": "^2.1.3",
     "gulp-imagemin": "^9.1.0",
     "gulp-rev": "^9.0.0",

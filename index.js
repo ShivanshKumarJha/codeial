@@ -24,15 +24,10 @@ const flash = require('connect-flash');
 const customMware = require('./config/middleware');
 
 // setup the chat server to be used with socket.io
-const chatServer = require('http').Server(app);
-const chatSockets = require('./config/chat_socket').chatSockets(chatServer);
-
-// Use environment-based port for chat server
-const CHAT_PORT =
-  process.env.CHAT_PORT ||
-  (process.env.NODE_ENV === 'production' ? port : 5000);
-chatServer.listen(CHAT_PORT);
-console.log(`Chat server is listening on port ${CHAT_PORT}`);
+console.log('Setting up Socket.IO server...');
+const server = require('http').Server(app);
+const chatSockets = require('./config/chat_socket').chatSockets(server);
+console.log('Socket.IO server configured successfully');
 
 // console.log(process.env.CODEIAL_ENVIRONMENT);
 if (process.env.CODEIAL_ENVIRONMENT == 'development') {
@@ -89,9 +84,15 @@ app.use(customMware.setFlash);
 
 app.use('/', require('./routes'));
 
-app.listen(port, function (err) {
+server.listen(port, '0.0.0.0', function (err) {
   if (err) {
     console.log(`Error in running the server: ${err}`);
   }
   console.log(`Server is running on port: ${port}`);
+  console.log(`Socket.IO is available on the same port: ${port}`);
+  console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
+  
+  if (process.env.RENDER_EXTERNAL_URL) {
+    console.log(`External URL: ${process.env.RENDER_EXTERNAL_URL}`);
+  }
 });

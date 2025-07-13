@@ -2,10 +2,9 @@ class ChatEngine {
   constructor(chatBoxId, userEmail, userName) {
     this.chatBox = $(`#${chatBoxId}`);
     this.userEmail = userEmail;
-    this.userName = userName;
-
-    // Environment-based socket connection
+    this.userName = userName; // Environment-based socket connection
     const socketBaseUrl = this.getSocketUrl();
+    console.log('Connecting to Socket.IO server at:', socketBaseUrl);
 
     this.socket = io(socketBaseUrl, {
       transports: ['websocket', 'polling'], // Enable both transports for better compatibility
@@ -30,17 +29,13 @@ class ChatEngine {
 
     // Check if we're in development (localhost)
     if (hostname === 'localhost' || hostname === '127.0.0.1') {
-      return 'http://localhost:5000';
+      // In development, connect to the same port as the main server
+      return `${protocol}//${hostname}${port ? ':' + port : ':8000'}`;
     }
 
-    // Production environment
-    if (protocol === 'https:') {
-      // If main app is on HTTPS, use the same port with WSS
-      return `${protocol}//${hostname}${port ? ':' + port : ''}`;
-    } else {
-      // HTTP fallback
-      return `${protocol}//${hostname}${port ? ':' + port : ''}`;
-    }
+    // Production environment (including Render) - connect to the same server
+    // For Render, this will be https://your-app-name.onrender.com
+    return `${protocol}//${hostname}${port ? ':' + port : ''}`;
   }
 
   connectionHandler() {
