@@ -9,5 +9,9 @@
   "css/layout.css": "css/layout-6ee0ec770f.css",
   "css/posts.css": "css/posts-1c85c99015.css",
   "css/reset_password.css": "css/reset_password-b1ef9c62d9.css",
-  "css/user_profile.css": "css/user_profile-4917b08d95.css"
+  "css/user_profile.css": "css/user_profile-4917b08d95.css",
+  "js/chat_engine.js": "js/chat_engine-b5cfc2aa48.js",
+  "js/chat_icon.js": "js/chat_icon-d1682dd828.js",
+  "js/formatting.js": "js/formatting-14ec0de759.js",
+  "js/toggle_likes.js": "js/toggle_likes-a1328d588a.js"
 }

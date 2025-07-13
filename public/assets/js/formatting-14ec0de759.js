@@ -1,0 +1,1 @@
+window.formatDate=function(e){return new Date(e).toLocaleString()},window.formatTime=function(e){return new Date(e).toLocaleTimeString()},window.escapeHtml=function(e){return e.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;")},$(document).ready((function(){console.log("Formatting utilities loaded")}));

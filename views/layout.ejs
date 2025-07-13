@@ -41,7 +41,7 @@
 
     <!-- This will add the required static script files whenever it will be rendered-->
     <%- script; %>
-        <script src="/js/formatting.js"></script>
+        <script src="<%= assetPath('js/formatting.js') %>"></script>
         <script>
     <% if (flash.success && flash.success.length > 0) { %>
                 new Noty({
