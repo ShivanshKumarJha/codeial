@@ -3,11 +3,7 @@ module.exports.chatSockets = function (socketServer) {
     cors: {
       origin:
         process.env.NODE_ENV === 'production'
-          ? [
-              process.env.RENDER_EXTERNAL_URL ||
-                'https://your-app-name.onrender.com',
-              'https://codeial-social.onrender.com',
-            ]
+          ? ['https://codeial-social.onrender.com']
           : [
               'http://localhost:8000',
               'http://localhost:3000',
@@ -17,7 +13,7 @@ module.exports.chatSockets = function (socketServer) {
       credentials: true,
     },
     transports: ['websocket', 'polling'],
-    allowEIO3: true, // Allow Engine.IO v3 clients for better compatibility
+    allowEIO3: true, 
   });
 
   io.sockets.on('connection', function (socket) {

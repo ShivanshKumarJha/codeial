@@ -2,18 +2,18 @@ class ChatEngine {
   constructor(chatBoxId, userEmail, userName) {
     this.chatBox = $(`#${chatBoxId}`);
     this.userEmail = userEmail;
-    this.userName = userName; // Environment-based socket connection
+    this.userName = userName;
     const socketBaseUrl = this.getSocketUrl();
     console.log('Connecting to Socket.IO server at:', socketBaseUrl);
 
     this.socket = io(socketBaseUrl, {
-      transports: ['websocket', 'polling'], // Enable both transports for better compatibility
+      transports: ['websocket', 'polling'],
       withCredentials: true,
       autoConnect: true,
       reconnection: true,
+      reconnectionAttempts: Infinity,
       reconnectionDelay: 1000,
-      reconnectionAttempts: 5,
-      timeout: 20000,
+      reconnectionDelayMax: 5000,
     });
 
     if (this.userEmail || this.userName) {
@@ -33,9 +33,7 @@ class ChatEngine {
       return `${protocol}//${hostname}${port ? ':' + port : ':8000'}`;
     }
 
-    // Production environment (including Render) - connect to the same server
-    // For Render, this will be https://your-app-name.onrender.com
-    return `${protocol}//${hostname}${port ? ':' + port : ''}`;
+    return 'https://codeial-social.onrender.com';
   }
 
   connectionHandler() {
