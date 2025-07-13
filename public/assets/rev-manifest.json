@@ -9,22 +9,5 @@
   "css/layout.css": "css/layout-6ee0ec770f.css",
   "css/posts.css": "css/posts-1c85c99015.css",
   "css/reset_password.css": "css/reset_password-b1ef9c62d9.css",
-  "css/user_profile.css": "css/user_profile-4917b08d95.css",
-  "js/chat_engine.js": "js/chat_engine-69912917fe.js",
-  "js/chat_icon.js": "js/chat_icon-d1682dd828.js",
-  "js/toggle_likes.js": "js/toggle_likes-a1328d588a.js",
-  "images/png/bg-chat.png": "images/png/bg-chat-ffe421a311.png",
-  "images/png/chat.png": "images/png/chat-2b695334d5.png",
-  "images/png/close-button.png": "images/png/close-button-1c040d2c21.png",
-  "images/png/default-avatar.png": "images/png/default-avatar-7f80dadea0.png",
-  "images/png/logo-black.png": "images/png/logo-black-0687d8b399.png",
-  "images/png/logo-color.png": "images/png/logo-color-bac8b0c249.png",
-  "images/png/logo-white.png": "images/png/logo-white-e4f493116b.png",
-  "images/png/logo.png": "images/png/logo-9b8390e654.png",
-  "images/svg/close-button.svg": "images/svg/close-button-d449994e7d.svg",
-  "images/svg/google.svg": "images/svg/google-8dda4f05b3.svg",
-  "images/svg/logo-black.svg": "images/svg/logo-black-0be7b5b48f.svg",
-  "images/svg/logo-color.svg": "images/svg/logo-color-8628ef2377.svg",
-  "images/svg/logo-white.svg": "images/svg/logo-white-232d993aa2.svg",
-  "images/svg/logo.svg": "images/svg/logo-56ed133361.svg"
+  "css/user_profile.css": "css/user_profile-4917b08d95.css"
 }
