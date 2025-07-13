@@ -84,15 +84,10 @@ app.use(customMware.setFlash);
 
 app.use('/', require('./routes'));
 
-server.listen(port, '0.0.0.0', function (err) {
+server.listen(port, function (err) {
   if (err) {
     console.log(`Error in running the server: ${err}`);
   }
   console.log(`Server is running on port: ${port}`);
   console.log(`Socket.IO is available on the same port: ${port}`);
-  console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
-  
-  if (process.env.RENDER_EXTERNAL_URL) {
-    console.log(`External URL: ${process.env.RENDER_EXTERNAL_URL}`);
-  }
 });
